@@ -1,6 +1,7 @@
 <template>
   <v-app :style="{ background: $vuetify.theme.themes.dark.background }">
     <Sidebar />
+    <Navbar />
     <v-main>
       <router-view />
     </v-main>
@@ -11,10 +12,12 @@
 import Vue from "vue";
 import Component from "vue-class-component";
 import Sidebar from "./components/Sidebar/Sidebar.vue";
+import Navbar from "./components/Navbar/Navbar.vue";
 
 @Component({
   components: {
     Sidebar,
+    Navbar
   },
 })
 export default class App extends Vue {}
