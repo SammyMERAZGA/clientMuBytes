@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1 class="text-center">Categories</h1>
+    <h1 class="text-center">Catégories</h1>
   </div>
 </template>
 

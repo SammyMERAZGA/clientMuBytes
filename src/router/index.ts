@@ -4,12 +4,13 @@ import Dashboard from '../views/Dashboard/Dashboard.vue';
 import Artworks from '../views/Artworks/Artworks.vue';
 import Categories from '../views/Categories/Categories.vue';
 import Customers from '../views/Customers/Customers.vue';
+import Login from '../views/Login/Login.vue';
 
 Vue.use(VueRouter)
 
 const routes: Array<RouteConfig> = [
   {
-    path: '/',
+    path: '/dashboard',
     name: 'Dashboard',
     component: Dashboard
   },
@@ -28,6 +29,11 @@ const routes: Array<RouteConfig> = [
     name: 'Customers',
     component: Customers
   },
+  {
+    path: '/',
+    name: 'Login',
+    component: Login
+  }
 ]
 
 const router = new VueRouter({
