@@ -8,6 +8,91 @@
         width="300"
       />
     </v-row>
+    <v-row align="center" justify="center">
+      <v-col cols="12" sm="4" class="mt-5">
+        <h1 class="overline indigo--text text-center mt-5">
+          Ajouter un utilisateur
+        </h1>
+        <v-dialog
+          class="mb-15"
+          v-model="addUserDialog"
+          persistent
+          max-width="600px"
+        >
+          <template v-slot:activator="{ on, attrs }">
+            <v-btn
+              id="btnAddUser"
+              class="rounded-xl mt-5"
+              color="blue darken-4"
+              dark
+              v-bind="attrs"
+              v-on="on"
+            >
+              <v-icon>mdi-plus</v-icon>
+            </v-btn>
+          </template>
+          <v-card class="rounded-xl">
+            <v-card-title>
+              <v-row align="center" justify="center">
+                <span class="text-h5 indigo--text mt-5">Ajouter un utilisateur</span>
+              </v-row>
+            </v-card-title>
+            <v-card-text>
+              <v-container>
+                <v-row>
+                  <v-col cols="12">
+                    <v-text-field
+                      v-model="lastname"
+                      label="Nom de famille"
+                      placeholder="Entrer un nom de famille"
+                      color="#fd2a65"
+                      required
+                    ></v-text-field>
+                  </v-col>
+                  <v-col cols="12">
+                    <v-text-field
+                      v-model="firstname"
+                      label="Prénom"
+                      placeholder="Entrer un prénom"
+                      color="#fd2a65"
+                      required
+                    ></v-text-field>
+                  </v-col>
+                  <v-col cols="12">
+                    <v-text-field
+                      label="Email"
+                      v-model="email"
+                      placeholder="Entrer un email"
+                      color="#fd2a65"
+                      required
+                    ></v-text-field>
+                  </v-col>
+                  <v-col cols="12">
+                    <v-text-field
+                      label="Mot de passe"
+                      v-model="password"
+                      placeholder="Entrer un mot de passe"
+                      type="password"
+                      color="#fd2a65"
+                      required
+                    ></v-text-field>
+                  </v-col>
+                </v-row>
+              </v-container>
+            </v-card-text>
+            <v-card-actions>
+              <v-spacer></v-spacer>
+              <v-btn class="rounded-xl" color="red" text @click="addUserDialog = false">
+                Annuler
+              </v-btn>
+              <v-btn class="rounded-xl" color="indigo" text @click="addUserDialog = false">
+                Ajouter
+              </v-btn>
+            </v-card-actions>
+          </v-card>
+        </v-dialog>
+      </v-col>
+    </v-row>
     <v-row>
       <v-card width="1500" class="rounded-xl mt-10" elevation="5">
         <v-data-table

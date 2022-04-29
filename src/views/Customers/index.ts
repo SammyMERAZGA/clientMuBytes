@@ -3,6 +3,13 @@ import Component from "vue-class-component";
 
 @Component
 export default class Customers extends Vue {
+  addUserDialog = false;
+
+  lastname = "";
+  firstname = "";
+  email = "";
+  password = "";
+
   headersCustomersTable = [
     {
       text: "Nom",
@@ -10,9 +17,8 @@ export default class Customers extends Vue {
       value: "lastname",
     },
     { text: "Prénom", value: "firstname" },
-    { text: "Adresse", value: "address" },
-    { text: "Code Postal", value: "zipcode" },
-    { text: "Ville", value: "city" },
+    { text: "Email", value: "email" },
+    { text: "Mot de passe", value: "password" },
     { text: "Modifier", value: "update", sortable: false },
     { text: "Supprimer", value: "delete", sortable: false },
   ];
@@ -22,9 +28,15 @@ export default class Customers extends Vue {
       id: 1,
       lastname: "Dupont",
       firstname: "Jean",
-      address: "1 rue de la paix",
-      zipcode: "75000",
-      city: "Paris",
+      email: "jean.dupont@gmail.com",
+      password: "MTQ0NjOkZmQ5OTM5NDE9ZTZjNGZmZjI3",
+    },
+    {
+      id: 2,
+      lastname: "Durand",
+      firstname: "Pierre",
+      email: "pierre.durant@gmail.com",
+      password: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9",
     },
   ];
 }
