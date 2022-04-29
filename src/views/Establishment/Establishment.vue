@@ -1,6 +1,14 @@
 <template>
   <div>
     <h1 class="text-center">Liste des établissements</h1>
+    <v-row align="center" justify="center">
+      <img
+        class="mt-5"
+        src="../../assets/images/UnDraw/establishment.png"
+        alt="categories"
+        width="300"
+      />
+    </v-row>
   </div>
 </template>
 

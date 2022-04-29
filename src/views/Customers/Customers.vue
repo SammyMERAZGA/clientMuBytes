@@ -3,7 +3,7 @@
     <h1 class="text-center mb-5">Liste des utilisateurs</h1>
     <v-row align="center" justify="center">
       <img
-        src="../../assets/images/customers.png"
+        src="../../assets/images/UnDraw/customers.png"
         alt="customers"
         width="300"
       />

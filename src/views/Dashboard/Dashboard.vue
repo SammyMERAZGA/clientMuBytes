@@ -2,7 +2,7 @@
   <div>
     <v-row align="center" justify="center">
       <img
-        src="../../assets/images/logo/mubytesText.png"
+        src="../../assets/images/Logo/mubytesText.png"
         alt="Mubytes"
         width="250"
       />
@@ -10,12 +10,7 @@
     <v-container>
       <v-row>
         <v-col class="mt-10 ml-10">
-          <v-card
-            class="rounded-lg"
-            elevation="10"
-            width="500"
-            height="350"
-          >
+          <v-card class="rounded-lg" elevation="10" width="500" height="350">
             <v-list-item>
               <v-list-item-content>
                 <div class="overline text-center">Diagramme 1</div>
@@ -50,12 +45,7 @@
           </v-card>
         </v-col>
         <v-col class="mt-10 ml-5">
-          <v-card
-            class="rounded-lg"
-            elevation="10"
-            width="500"
-            height="350"
-          >
+          <v-card class="rounded-lg" elevation="10" width="500" height="350">
             <v-list-item>
               <v-list-item-content>
                 <div class="overline text-center">Diagramme 2</div>

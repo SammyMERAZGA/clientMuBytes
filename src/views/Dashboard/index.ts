@@ -4,7 +4,7 @@ import axios from "axios";
 
 @Component
 export default class Dashboard extends Vue {
-  // Chart 1
+
   chart1 = [90, 40, 60];
 
   chart1Options = {

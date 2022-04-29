@@ -2,7 +2,7 @@
   <nav>
     <v-navigation-drawer dark app id="sidebar" width="100">
       <div class="text-center mt-8 ml-8">
-          <v-img id="whiteLogo" src="../../assets/images/logo/whiteMubytes.png" alt="Logo" class="rounded-circle" height="50" width="35"></v-img>
+          <v-img id="whiteLogo" src="../../assets/images/Logo/whiteMubytes.png" alt="Logo" class="rounded-circle" height="50" width="35"></v-img>
       </div>
       <v-list flat class="mt-5">
         <v-list-item-group v-model="selectedItem" color="black">

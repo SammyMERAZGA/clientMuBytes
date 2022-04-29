@@ -2,7 +2,7 @@
   <v-container>
     <v-row align="center" justify="center">
       <img
-        src="../../assets/images/logo/mubytesText.png"
+        src="../../assets/images/Logo/mubytesText.png"
         alt="Mubytes"
         width="200"
       />
