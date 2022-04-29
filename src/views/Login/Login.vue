@@ -1,12 +1,17 @@
 <template>
   <v-container>
     <v-row align="center" justify="center">
+      <img
+        src="../../assets/images/logo/mubytesText.png"
+        alt="Mubytes"
+        width="200"
+      />
       <v-col cols="12" sm="10">
         <v-card class="elevation-6 mt-15 rounded-xl">
           <v-row>
             <v-col cols="12" md="6">
               <v-card-text class="mt-5 mb-10">
-                <h1 class="text-center">Connexion</h1>
+                <h1 id="login" class="text-center">Connexion</h1>
                 <v-row align="center" justify="center">
                   <v-col cols="12" md="10">
                     <v-text-field
@@ -42,18 +47,11 @@
                 <v-card-text class="white--text">
                   <div class="ml-10">
                     <v-row align="center" justify="center">
-                      <v-img
-                        id="logo"
-                        src="https://fontmeme.com/images/Pokemon-Logo.jpg"
-                        alt="Logo"
-                        class="elevation-1 rounded-circle mb-10"
-                        max-width="100"
-                      ></v-img>
-                      <h3 class="text-center">
+                      <h3 class="text-center mt-15">
                         Vous n'avez pas de compte ? Contactez un administrateur
                         pour qu'il vous crée un compte.
                       </h3>
-                      <v-btn class="rounded-xl mt-5" tile outlined dark
+                      <v-btn class="rounded-xl mt-15" tile outlined dark
                         >Contact</v-btn
                       >
                     </v-row>

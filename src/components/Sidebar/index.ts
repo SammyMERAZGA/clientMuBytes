@@ -9,9 +9,11 @@ export default class Sidebar extends Vue {
 
   items = [
     { icon: "mdi-view-dashboard", text: "Dashboard", url: "/dashboard" },
-    { icon: "mdi-bank", text: "Oeuvres", url: "/artworks" },
     { icon: "mdi-shape", text: "Catégories", url: "/categories" },
+    { icon: "mdi-bank", text: "Oeuvres", url: "/artworks" },
+    { icon: "mdi-domain", text: "Etablissements", url: "/establishments" },
+    { icon: "mdi-list-status", text: "Statuts", url: "/status" },
     { icon: "mdi-account-group", text: "Utilisateurs", url: "/customers" },
-    { icon: "mdi-account-circle", text: "Connexion", url: "/" }
+    { icon: "mdi-shield-lock", text: "Connexion", url: "/" }
   ];
 }

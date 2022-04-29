@@ -1,10 +1,9 @@
 <template>
   <v-app-bar app color="white" flat>
     <v-spacer></v-spacer>
-    <span class="grey--text d-none d-sm-flex"
-      >Bonjour Sammy !</span>
+    <span class="grey--text d-none d-sm-flex">Bonjour Rida !</span>
     <v-avatar size="30" class="ml-2">
-      <v-img src="https://i.pinimg.com/564x/f3/b1/88/f3b188df745949d37037640c55bcdd01.jpg"></v-img>
+      <v-img src="../../assets/images/Rida.png"></v-img>
     </v-avatar>
     <v-btn icon dark class="">
       <v-icon x-small color="#878A94">fas fa-chevron-down</v-icon>

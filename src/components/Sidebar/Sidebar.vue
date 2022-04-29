@@ -1,8 +1,8 @@
 <template>
   <nav>
     <v-navigation-drawer dark app id="sidebar" width="100">
-      <div class="text-center mt-5 ml-2">
-          <v-img src="https://i.pinimg.com/originals/86/e3/b9/86e3b90cfc140c94fd2b30cda2b805fb.jpg" alt="Logo" class="elevation-1 rounded-circle" height="80" width="80"></v-img>
+      <div class="text-center mt-8 ml-8">
+          <v-img id="whiteLogo" src="../../assets/images/logo/whiteMubytes.png" alt="Logo" class="rounded-circle" height="50" width="35"></v-img>
       </div>
       <v-list flat class="mt-5">
         <v-list-item-group v-model="selectedItem" color="black">

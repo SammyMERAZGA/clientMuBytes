@@ -1,18 +1,18 @@
 import Vue from "vue";
 import Component from "vue-class-component";
 import axios from "axios";
-import { Test } from "../../types/Test";
 
 @Component
 export default class Dashboard extends Vue {
+  // Chart 1
+  chart1 = [90, 40, 60];
 
-  testApi = [];
-
-  async test(): Promise<void> {
-    this.testApi = (await axios.get(`/api/test`)).data;
-  }
-
-  mounted(): void {
-    this.test();
-  }
+  chart1Options = {
+    labels: [
+      "Musée",
+      "Cinéma",
+      "Théatre"
+    ],
+    colors: ["#353E8D", "#fd2a65", "#fcd5dc"],
+  };
 }

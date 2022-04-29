@@ -1,9 +1,11 @@
 import Vue from 'vue'
 import VueRouter, { RouteConfig } from 'vue-router'
 import Dashboard from '../views/Dashboard/Dashboard.vue';
+import Establishments from '../views/Establishment/Establishment.vue';
 import Artworks from '../views/Artworks/Artworks.vue';
 import Categories from '../views/Categories/Categories.vue';
 import Customers from '../views/Customers/Customers.vue';
+import Status from '../views/Status/Status.vue';
 import Login from '../views/Login/Login.vue';
 
 Vue.use(VueRouter)
@@ -25,9 +27,19 @@ const routes: Array<RouteConfig> = [
     component: Categories
   },
   {
+    path: '/status',
+    name: 'Status',
+    component: Status
+  },
+  {
     path: '/customers',
     name: 'Customers',
     component: Customers
+  },
+  {
+    path: '/establishments',
+    name: 'Establishments',
+    component: Establishments
   },
   {
     path: '/',
