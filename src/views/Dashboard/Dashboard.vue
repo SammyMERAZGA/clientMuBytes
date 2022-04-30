@@ -13,16 +13,20 @@
           <v-card class="rounded-lg" elevation="10" width="500" height="350">
             <v-list-item>
               <v-list-item-content>
-                <div class="overline text-center">Diagramme 1</div>
+                <div class="overline text-center">
+                  Nombre d'oeuvres par catégorie
+                </div>
                 <div><v-divider class="mb-4"></v-divider></div>
               </v-list-item-content>
             </v-list-item>
-            <apexchart
-              width="350px"
-              type="pie"
-              :options="chart1Options"
-              :series="chart1"
-            ></apexchart>
+            <v-row align="center" justify="center">
+              <apexchart
+                width="400px"
+                type="pie"
+                :options="chart1Options"
+                :series="chart1"
+              ></apexchart>
+            </v-row>
           </v-card>
           <v-card
             class="rounded-lg mt-5"

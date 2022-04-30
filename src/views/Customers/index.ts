@@ -19,7 +19,6 @@ export default class Customers extends Vue {
     { text: "Prénom", value: "firstname" },
     { text: "Rôle", value: "role" },
     { text: "Email", value: "email" },
-    { text: "Mot de passe", value: "password" },
     { text: "Modifier", value: "update", sortable: false },
     { text: "Supprimer", value: "delete", sortable: false },
   ];
@@ -30,16 +29,14 @@ export default class Customers extends Vue {
       lastname: "Dupont",
       firstname: "Jean",
       role: "Admin",
-      email: "jean.dupont@gmail.com",
-      password: "MTQ0NjOkZmQ5OTM5NDE9ZTZjNGZmZjI3",
+      email: "jean.dupont@gmail.com"
     },
     {
       id: 2,
       lastname: "Durand",
       firstname: "Pierre",
       role: "Super Admin",
-      email: "pierre.durant@gmail.com",
-      password: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9",
+      email: "pierre.durant@gmail.com"
     },
   ];
 }

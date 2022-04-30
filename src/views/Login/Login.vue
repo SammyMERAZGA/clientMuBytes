@@ -11,7 +11,7 @@
           <v-row>
             <v-col cols="12" md="6">
               <v-card-text class="mt-5 mb-10">
-                <h1 id="login" class="text-center">Connexion</h1>
+                <h1 class="text-center h1-mubytes">Connexion</h1>
                 <v-row align="center" justify="center">
                   <v-col cols="12" md="10">
                     <v-text-field

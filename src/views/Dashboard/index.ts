@@ -9,9 +9,9 @@ export default class Dashboard extends Vue {
 
   chart1Options = {
     labels: [
-      "Musée",
-      "Cinéma",
-      "Théatre"
+      "Ordinateurs",
+      "Pixels Arts",
+      "Tableaux"
     ],
     colors: ["#353E8D", "#fd2a65", "#fcd5dc"],
   };
