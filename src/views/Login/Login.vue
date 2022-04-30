@@ -32,7 +32,7 @@
                     />
                     <v-btn
                       class="mt-5 rounded-xl"
-                      color="#353E8D"
+                      color="blue darken-4"
                       dark
                       block
                       tile

@@ -39,4 +39,6 @@ export default class Customers extends Vue {
       email: "pierre.durant@gmail.com"
     },
   ];
+
+  role = ["Admin", "Super Admin"];
 }

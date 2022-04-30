@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <h1 class="text-center indigo--text mb-5">Liste des utilisateurs</h1>
+    <h1 class="text-center h1-mubytes mb-5">Liste des utilisateurs</h1>
     <v-row align="center" justify="center">
       <img
         src="../../assets/images/UnDraw/customers.png"
@@ -28,13 +28,15 @@
               v-bind="attrs"
               v-on="on"
             >
-              <v-icon>mdi-plus</v-icon>
+              <v-icon>mdi-account-plus</v-icon>
             </v-btn>
           </template>
           <v-card class="rounded-xl">
             <v-card-title>
               <v-row align="center" justify="center">
-                <span class="text-h5 indigo--text mt-5">Ajouter un utilisateur</span>
+                <span class="text-h5 indigo--text mt-5"
+                  >Ajouter un utilisateur</span
+                >
               </v-row>
             </v-card-title>
             <v-card-text>
@@ -45,6 +47,7 @@
                       v-model="lastname"
                       label="Nom de famille"
                       placeholder="Entrer un nom de famille"
+                      prepend-icon="mdi-account-circle"
                       color="#fd2a65"
                       required
                     ></v-text-field>
@@ -54,6 +57,7 @@
                       v-model="firstname"
                       label="Prénom"
                       placeholder="Entrer un prénom"
+                      prepend-icon="mdi-account-circle"
                       color="#fd2a65"
                       required
                     ></v-text-field>
@@ -63,6 +67,7 @@
                       label="Email"
                       v-model="email"
                       placeholder="Entrer un email"
+                      prepend-icon="mdi-email"
                       color="#fd2a65"
                       required
                     ></v-text-field>
@@ -73,19 +78,39 @@
                       v-model="password"
                       placeholder="Entrer un mot de passe"
                       type="password"
+                      prepend-icon="mdi-key-variant"
                       color="#fd2a65"
                       required
                     ></v-text-field>
+                  </v-col>
+                  <v-col class="d-flex" cols="12">
+                    <v-select
+                      :items="role"
+                      label="Rôle de l'utilisateur"
+                      prepend-icon="mdi-redhat"
+                      color="#fd2a65"
+                      required
+                    ></v-select>
                   </v-col>
                 </v-row>
               </v-container>
             </v-card-text>
             <v-card-actions>
               <v-spacer></v-spacer>
-              <v-btn class="rounded-xl" color="red" text @click="addUserDialog = false">
+              <v-btn
+                class="rounded-xl"
+                color="red"
+                text
+                @click="addUserDialog = false"
+              >
                 Annuler
               </v-btn>
-              <v-btn class="rounded-xl" color="indigo" text @click="addUserDialog = false">
+              <v-btn
+                class="rounded-xl"
+                color="indigo"
+                text
+                @click="addUserDialog = false"
+              >
                 Ajouter
               </v-btn>
             </v-card-actions>

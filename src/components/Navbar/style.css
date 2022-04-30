@@ -1,0 +1,14 @@
+#profilePic {
+  border: solid 1px #fd2a65;
+}
+
+#username {
+  background-color: #0d47a1;
+  background-image: linear-gradient(45deg, #fd2a65, #0d47a1);
+  background-size: 100%;
+  background-clip: border-box;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -moz-text-fill-color: transparent;
+}

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1 class="text-center">Liste des oeuvres</h1>
+    <h1 class="text-center h1-mubytes">Liste des oeuvres</h1>
     <v-row align="center" justify="center">
       <img
         class="mt-5"
@@ -30,7 +30,7 @@
               v-bind="attrs"
               v-on="on"
             >
-              <v-icon>mdi-plus</v-icon>
+              <v-icon>mdi-bank-plus</v-icon>
             </v-btn>
           </template>
           <v-card class="rounded-xl">

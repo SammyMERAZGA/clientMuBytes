@@ -3,6 +3,7 @@ import VueRouter, { RouteConfig } from 'vue-router'
 import Dashboard from '../views/Dashboard/Dashboard.vue';
 import Establishments from '../views/Establishment/Establishment.vue';
 import Artworks from '../views/Artworks/Artworks.vue';
+import HistoryArtwork from '../views/HistoryArtwork/HistoryArtwork.vue';
 import Categories from '../views/Categories/Categories.vue';
 import Customers from '../views/Customers/Customers.vue';
 import Status from '../views/Status/Status.vue';
@@ -45,6 +46,11 @@ const routes: Array<RouteConfig> = [
     path: '/',
     name: 'Login',
     component: Login
+  },
+  {
+    path: '/history',
+    name: 'HistoryArtwork',
+    component: HistoryArtwork
   }
 ]
 
