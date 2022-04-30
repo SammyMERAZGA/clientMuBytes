@@ -218,16 +218,20 @@
               />
 
               <v-row justify="center" class="mt-5 mb-2">
+                <v-btn icon large outlined color="#fd2a65" to="/history">
+                  <v-icon color="#fd2a65"> mdi-clipboard-text-clock </v-icon>
+                </v-btn>
                 <v-btn
+                  class="ml-10"
                   icon
                   large
                   outlined
-                  color="#fd2a65"
+                  color="#353E8D"
                   v-bind="attrs"
                   v-on="on"
                   @click="idArtwork = artwork.id"
                 >
-                  <v-icon color="#fd2a65"> mdi-clipboard-text-clock </v-icon>
+                  <v-icon color="#353E8D"> mdi-pencil </v-icon>
                 </v-btn>
                 <v-dialog
                   v-if="idArtwork == artwork.id"
@@ -235,24 +239,169 @@
                   persistent
                   width="600px"
                 >
-                  <v-card>
-                    <v-card-title class="justify-center text-center">
-                      <span class="text-h5">{{ artwork.name }}</span>
+                  <v-card class="rounded-xl">
+                    <v-card-title>
+                      <v-row align="center" justify="center">
+                        <span class="text-h5 indigo--text mt-5"
+                          >Modifier une oeuvre</span
+                        >
+                      </v-row>
                     </v-card-title>
                     <v-card-text>
-                      {{ artwork.description }}
+                      <v-container>
+                        <v-row>
+                          <v-col cols="12">
+                            <v-text-field
+                              v-model="name"
+                              label="Nom de l'oeuvre"
+                              placeholder="Entrer le nom de l'oeuvre"
+                              prepend-icon="mdi-palette-advanced"
+                              color="#fd2a65"
+                              required
+                            ></v-text-field>
+                          </v-col>
+                          <v-col cols="12">
+                            <v-text-field
+                              v-model="author"
+                              label="Auteur de l'oeuvre"
+                              placeholder="Entrer l'auteur de l'oeuvre"
+                              prepend-icon="mdi-account-school"
+                              color="#fd2a65"
+                              required
+                            ></v-text-field>
+                          </v-col>
+                          <v-col class="d-flex" cols="12">
+                            <v-select
+                              :items="status"
+                              label="Statut de l'oeuvre"
+                              prepend-icon="mdi-list-status"
+                              color="#fd2a65"
+                              required
+                            ></v-select>
+                          </v-col>
+                          <v-col cols="12">
+                            <v-textarea
+                              filled
+                              v-model="description"
+                              label="Description de l'oeuvre"
+                              color="#fd2a65"
+                              prepend-icon="mdi-script-text-outline"
+                              hint="Décrivez l'oeuvre de façon détaillée"
+                            ></v-textarea>
+                          </v-col>
+                          <v-col cols="12">
+                            <v-file-input
+                              class="mr-5"
+                              :rules="rulesPicture"
+                              accept="image/png, image/jpeg, image/bmp"
+                              placeholder="Entrer l'image de l'oeuvre"
+                              prepend-icon="mdi-camera"
+                              label="Image de l'oeuvre"
+                              v-model="picture"
+                              color="#fd2a65"
+                            ></v-file-input>
+                          </v-col>
+                          <v-row align="center" justify="center" class="mt-2">
+                            <v-col cols="12" sm="6" md="5">
+                              <v-menu
+                                v-model="calendarArtworkAdded2"
+                                :close-on-content-click="false"
+                                :nudge-right="40"
+                                transition="scale-transition"
+                                offset-y
+                                min-width="auto"
+                              >
+                                <template v-slot:activator="{ on, attrs }">
+                                  <v-text-field
+                                    v-model="dateAdded"
+                                    label="Date de l'ajout"
+                                    prepend-icon="mdi-calendar-plus"
+                                    v-bind="attrs"
+                                    v-on="on"
+                                    color="#fd2a65"
+                                  ></v-text-field>
+                                </template>
+                                <v-date-picker
+                                  v-model="dateAdded"
+                                  @input="calendarArtworkAdded2 = false"
+                                ></v-date-picker>
+                              </v-menu>
+                            </v-col>
+                            <v-col cols="12" sm="6" md="5">
+                              <v-menu
+                                v-model="calendarArtworkCreated2"
+                                :close-on-content-click="false"
+                                :nudge-right="40"
+                                transition="scale-transition"
+                                offset-y
+                                min-width="auto"
+                              >
+                                <template v-slot:activator="{ on, attrs }">
+                                  <v-text-field
+                                    v-model="dateCreation"
+                                    label="Date de la création"
+                                    prepend-icon="mdi-calendar"
+                                    v-bind="attrs"
+                                    v-on="on"
+                                    color="#fd2a65"
+                                  ></v-text-field>
+                                </template>
+                                <v-date-picker
+                                  v-model="dateCreation"
+                                  @input="calendarArtworkCreated2 = false"
+                                ></v-date-picker>
+                              </v-menu>
+                            </v-col>
+                            <v-col cols="12" sm="6" md="5">
+                              <v-menu
+                                v-model="calendarArtworkLoaned2"
+                                :close-on-content-click="false"
+                                :nudge-right="40"
+                                transition="scale-transition"
+                                offset-y
+                                min-width="auto"
+                              >
+                                <template v-slot:activator="{ on, attrs }">
+                                  <v-text-field
+                                    v-model="dateOfLoan"
+                                    label="Date du prêt"
+                                    prepend-icon="mdi-calendar-clock"
+                                    v-bind="attrs"
+                                    v-on="on"
+                                    color="#fd2a65"
+                                  ></v-text-field>
+                                </template>
+                                <v-date-picker
+                                  v-model="dateOfLoan"
+                                  @input="calendarArtworkLoaned2 = false"
+                                ></v-date-picker>
+                              </v-menu>
+                            </v-col>
+                          </v-row>
+                        </v-row>
+                      </v-container>
                     </v-card-text>
                     <v-card-actions>
                       <v-spacer></v-spacer>
-                      <v-btn color="red darken-1" text @click="idArtwork = 0">
-                        Retour
+                      <v-btn
+                        class="rounded-xl"
+                        color="red"
+                        text
+                        @click="dialogArtwork = false"
+                      >
+                        Annuler
+                      </v-btn>
+                      <v-btn
+                        class="rounded-xl"
+                        color="indigo"
+                        text
+                        @click="dialogArtwork = false"
+                      >
+                        Ajouter
                       </v-btn>
                     </v-card-actions>
                   </v-card>
                 </v-dialog>
-                <v-btn class="ml-10" icon large outlined color="#353E8D">
-                  <v-icon color="#353E8D"> mdi-pencil </v-icon>
-                </v-btn>
                 <v-btn class="ml-10" icon large outlined color="#fd2a65">
                   <v-icon color="#fd2a65"> mdi-delete </v-icon>
                 </v-btn>
@@ -262,6 +411,14 @@
         </v-card>
       </v-col>
     </v-row>
+    <div class="text-center mt-15">
+      <v-pagination
+        color="#fd2a65"
+        v-model="page"
+        :length="4"
+        circle
+      ></v-pagination>
+    </div>
   </div>
 </template>
 

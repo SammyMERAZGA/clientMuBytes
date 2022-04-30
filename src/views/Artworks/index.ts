@@ -3,7 +3,6 @@ import Component from "vue-class-component";
 
 @Component
 export default class Artworks extends Vue {
-  dialogArtwork = true;
 
   // Adding an Artwork
   addArtworkDialog = false;
@@ -18,11 +17,22 @@ export default class Artworks extends Vue {
   dateCreation = "";
   dateOfLoan = "";
 
+  // Editing an Artwork
+  dialogArtwork = true;
+
+  calendarArtworkAdded2 = false;
+  calendarArtworkCreated2 = false;
+  calendarArtworkLoaned2 = false;
+
+  page = 1;
+
   idArtwork = 0;
 
   rulesPicture = [
     (value: any) =>
-      !value || value.size < 2000000 || "La taille de l'image doit être inférieure à 2 Mo !",
+      !value ||
+      value.size < 2000000 ||
+      "La taille de l'image doit être inférieure à 2 Mo !",
   ];
 
   status = ["Disponible", "En prêt", "Non-prêtable"];
@@ -55,6 +65,22 @@ export default class Artworks extends Vue {
       description:
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium unde ducimus nihil dicta iusto ratione.",
       picture: "https://c.tenor.com/7ifKFj-rS3MAAAAC/meliodas-ban.gif",
+    },
+    {
+      id: 5,
+      name: "Light & L",
+      description:
+        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium unde ducimus nihil dicta iusto ratione.",
+      picture:
+        "https://animesher.com/orig/1/149/1491/14918/animesher.com_yagami-light-deathnote-gif-1491888.gif",
+    },
+    {
+      id: 4,
+      name: "Tanjiro & Nezuko",
+      description:
+        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium unde ducimus nihil dicta iusto ratione.",
+      picture:
+        "https://i.pinimg.com/originals/37/02/a2/3702a2540fd07aa72e0cc0c5ac4a072a.gif",
     },
   ];
 }
