@@ -7,6 +7,9 @@ export default class Sidebar extends Vue {
 
   drawer = null;
 
+  // Snackbar
+  snackbarLogout = false;
+
   items = [
     { icon: "mdi-view-dashboard", text: "Dashboard", url: "/dashboard" },
     { icon: "mdi-shape", text: "Catégories", url: "/categories" },
@@ -14,6 +17,6 @@ export default class Sidebar extends Vue {
     { icon: "mdi-domain", text: "Etablissements", url: "/establishments" },
     { icon: "mdi-list-status", text: "Statuts", url: "/status" },
     { icon: "mdi-account-group", text: "Utilisateurs", url: "/customers" },
-    { icon: "mdi-shield-lock", text: "Connexion", url: "/" }
+    { icon: "mdi-shield-lock", text: "Connexion", url: "/" },
   ];
 }

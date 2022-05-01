@@ -51,7 +51,12 @@
                         Vous n'avez pas de compte ? Contactez un administrateur
                         pour qu'il vous crée un compte.
                       </h3>
-                      <v-btn class="rounded-xl mt-15" tile outlined dark
+                      <v-btn
+                        class="rounded-xl mt-15"
+                        tile
+                        outlined
+                        dark
+                        @click="snackbarContact = true"
                         >Contact</v-btn
                       >
                     </v-row>
@@ -63,6 +68,35 @@
         </v-card>
       </v-col>
     </v-row>
+    <!-- SNACKBAR -->
+    <!-- Error Password -->
+    <v-snackbar color="red" v-model="snackbarErrorPassword"
+      >Adrese e-mail ou mot de passe incorrect !
+      <template v-slot:action="{ attrs }">
+        <v-btn
+          color="white"
+          text
+          v-bind="attrs"
+          @click="snackbarErrorPassword = false"
+        >
+          Fermer
+        </v-btn>
+      </template>
+    </v-snackbar>
+    <!-- Contact -->
+    <v-snackbar color="green" v-model="snackbarContact"
+      >Votre message a bien été envoyé ! Nous vous répondrons rapidement 😁
+      <template v-slot:action="{ attrs }">
+        <v-btn
+          color="white"
+          text
+          v-bind="attrs"
+          @click="snackbarContact = false"
+        >
+          Fermer
+        </v-btn>
+      </template>
+    </v-snackbar>
   </v-container>
 </template>
 

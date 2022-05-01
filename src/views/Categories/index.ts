@@ -4,8 +4,12 @@ import Component from "vue-class-component";
 
 @Component
 export default class Categories extends Vue {
-
   addCategoryDialog = false;
+
+  // Snackbar
+  snackbarAddCategory = false;
+  snackbarUpdateCategory = false;
+  snackbarDeleteCategory = false;
 
   headersCategoriesTable = [
     {
@@ -20,11 +24,11 @@ export default class Categories extends Vue {
   categories = [
     {
       id: 1,
-      category: "Ordinateur"
+      category: "Ordinateur",
     },
     {
       id: 2,
-      category: "Pixel Art"
+      category: "Pixel Art",
     },
   ];
 }

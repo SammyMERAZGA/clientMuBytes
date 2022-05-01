@@ -10,6 +10,11 @@ export default class Customers extends Vue {
   email = "";
   password = "";
 
+  // Snackbar
+  snackbarAddCustomer = false;
+  snackbarUpdateCustomer = false;
+  snackbarDeleteCustomer = false;
+
   headersCustomersTable = [
     {
       text: "Nom",

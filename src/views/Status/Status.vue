@@ -65,6 +65,49 @@
         </v-data-table>
       </v-card>
     </v-row>
+    <!-- SNACKBAR -->
+    <!-- Add status -->
+    <v-snackbar color="green" v-model="snackbarAddStatus"
+      >Votre statut a bien été ajouté !
+      <template v-slot:action="{ attrs }">
+        <v-btn
+          color="white"
+          text
+          v-bind="attrs"
+          @click="snackbarAddStatus = false"
+        >
+          Fermer
+        </v-btn>
+      </template>
+    </v-snackbar>
+    <!-- Update status -->
+    <v-snackbar color="green" v-model="snackbarUpdateStatus"
+      >Votre statut a bien été modifié !
+      <template v-slot:action="{ attrs }">
+        <v-btn
+          color="white"
+          text
+          v-bind="attrs"
+          @click="snackbarUpdateStatus = false"
+        >
+          Fermer
+        </v-btn>
+      </template>
+    </v-snackbar>
+    <!-- Delete status -->
+    <v-snackbar color="green" v-model="snackbarDeleteStatus"
+      >Votre statut a bien été supprimée.
+      <template v-slot:action="{ attrs }">
+        <v-btn
+          color="white"
+          text
+          v-bind="attrs"
+          @click="snackbarDeleteStatus = false"
+        >
+          Fermer
+        </v-btn>
+      </template>
+    </v-snackbar>
   </div>
 </template>
 

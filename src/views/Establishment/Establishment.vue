@@ -67,6 +67,49 @@
         </v-data-table>
       </v-card>
     </v-row>
+    <!-- SNACKBAR -->
+    <!-- Add etablishment -->
+    <v-snackbar color="green" v-model="snackbarAddEtablishment"
+      >Votre établissement a bien été ajouté !
+      <template v-slot:action="{ attrs }">
+        <v-btn
+          color="white"
+          text
+          v-bind="attrs"
+          @click="snackbarAddEtablishment = false"
+        >
+          Fermer
+        </v-btn>
+      </template>
+    </v-snackbar>
+    <!-- Update category -->
+    <v-snackbar color="green" v-model="snackbarUpdateEtablishment"
+      >Votre établissement a bien été modifié !
+      <template v-slot:action="{ attrs }">
+        <v-btn
+          color="white"
+          text
+          v-bind="attrs"
+          @click="snackbarUpdateEtablishment = false"
+        >
+          Fermer
+        </v-btn>
+      </template>
+    </v-snackbar>
+    <!-- Delete category -->
+    <v-snackbar color="green" v-model="snackbarDeleteEtablishment"
+      >Votre établissement a bien été supprimée.
+      <template v-slot:action="{ attrs }">
+        <v-btn
+          color="white"
+          text
+          v-bind="attrs"
+          @click="snackbarDeleteEtablishment = false"
+        >
+          Fermer
+        </v-btn>
+      </template>
+    </v-snackbar>
   </div>
 </template>
 

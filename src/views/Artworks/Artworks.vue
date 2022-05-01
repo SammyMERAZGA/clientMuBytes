@@ -189,7 +189,10 @@
                 class="rounded-xl"
                 color="indigo"
                 text
-                @click="addArtworkDialog = false"
+                @click="
+                  addArtworkDialog = false;
+                  snackbarAddArtwork = true;
+                "
               >
                 Ajouter
               </v-btn>
@@ -218,9 +221,24 @@
               />
 
               <v-row justify="center" class="mt-5 mb-2">
-                <v-btn icon large outlined color="#fd2a65" to="/history">
-                  <v-icon color="#fd2a65"> mdi-clipboard-text-clock </v-icon>
-                </v-btn>
+                <v-tooltip left color="#fd2a65">
+                  <template v-slot:activator="{ on, attrs }">
+                    <v-btn
+                      icon
+                      large
+                      outlined
+                      color="#fd2a65"
+                      to="/history"
+                      v-bind="attrs"
+                      v-on="on"
+                    >
+                      <v-icon color="#fd2a65">
+                        mdi-clipboard-text-clock
+                      </v-icon>
+                    </v-btn>
+                  </template>
+                  <span>Consulter l'historique</span>
+                </v-tooltip>
                 <v-btn
                   class="ml-10"
                   icon
@@ -395,14 +413,24 @@
                         class="rounded-xl"
                         color="indigo"
                         text
-                        @click="dialogArtwork = false"
+                        @click="
+                          dialogArtwork = false;
+                          snackbarUpdateArtwork = true;
+                        "
                       >
-                        Ajouter
+                        Modifier
                       </v-btn>
                     </v-card-actions>
                   </v-card>
                 </v-dialog>
-                <v-btn class="ml-10" icon large outlined color="#fd2a65">
+                <v-btn
+                  class="ml-10"
+                  icon
+                  large
+                  outlined
+                  color="#fd2a65"
+                  @click="snackbarDeleteArtwork = true"
+                >
                   <v-icon color="#fd2a65"> mdi-delete </v-icon>
                 </v-btn>
               </v-row>
@@ -419,6 +447,49 @@
         circle
       ></v-pagination>
     </div>
+    <!-- SNACKBAR -->
+    <!-- Add artwork -->
+    <v-snackbar color="green" v-model="snackbarAddArtwork"
+      >Votre oeuvre a bien été ajoutée !
+      <template v-slot:action="{ attrs }">
+        <v-btn
+          color="white"
+          text
+          v-bind="attrs"
+          @click="snackbarAddArtwork = false"
+        >
+          Fermer
+        </v-btn>
+      </template>
+    </v-snackbar>
+    <!-- Update artwork -->
+    <v-snackbar color="green" v-model="snackbarUpdateArtwork"
+      >Votre oeuvre a bien été modifiée !
+      <template v-slot:action="{ attrs }">
+        <v-btn
+          color="white"
+          text
+          v-bind="attrs"
+          @click="snackbarUpdateArtwork = false"
+        >
+          Fermer
+        </v-btn>
+      </template>
+    </v-snackbar>
+    <!-- Delete artwork -->
+    <v-snackbar color="red" v-model="snackbarDeleteArtwork"
+      >Cette oeuvre a bien été supprimée.
+      <template v-slot:action="{ attrs }">
+        <v-btn
+          color="white"
+          text
+          v-bind="attrs"
+          @click="snackbarDeleteArtwork = false"
+        >
+          Fermer
+        </v-btn>
+      </template>
+    </v-snackbar>
   </div>
 </template>
 

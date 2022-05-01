@@ -69,7 +69,10 @@
                 class="rounded-xl"
                 color="indigo"
                 text
-                @click="addCategoryDialog = false"
+                @click="
+                  addCategoryDialog = false;
+                  snackbarAddCategory = true;
+                "
               >
                 Ajouter
               </v-btn>
@@ -121,6 +124,49 @@
         </v-data-table>
       </v-card>
     </v-row>
+    <!-- SNACKBAR -->
+    <!-- Add category -->
+    <v-snackbar color="green" v-model="snackbarAddCategory"
+      >Votre catégorie a bien été ajoutée !
+      <template v-slot:action="{ attrs }">
+        <v-btn
+          color="white"
+          text
+          v-bind="attrs"
+          @click="snackbarAddCategory = false"
+        >
+          Fermer
+        </v-btn>
+      </template>
+    </v-snackbar>
+    <!-- Update category -->
+    <v-snackbar color="green" v-model="snackbarUpdateCategory"
+      >Votre catégorie a bien été modifiée !
+      <template v-slot:action="{ attrs }">
+        <v-btn
+          color="white"
+          text
+          v-bind="attrs"
+          @click="snackbarUpdateCategory = false"
+        >
+          Fermer
+        </v-btn>
+      </template>
+    </v-snackbar>
+    <!-- Delete category -->
+    <v-snackbar color="green" v-model="snackbarDeleteCategory"
+      >Votre catégorie a bien été supprimée.
+      <template v-slot:action="{ attrs }">
+        <v-btn
+          color="white"
+          text
+          v-bind="attrs"
+          @click="snackbarDeleteCategory = false"
+        >
+          Fermer
+        </v-btn>
+      </template>
+    </v-snackbar>
   </v-container>
 </template>
 

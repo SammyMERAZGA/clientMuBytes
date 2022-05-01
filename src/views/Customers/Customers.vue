@@ -109,7 +109,10 @@
                 class="rounded-xl"
                 color="indigo"
                 text
-                @click="addUserDialog = false"
+                @click="
+                  addUserDialog = false;
+                  snackbarAddCustomer = true;
+                "
               >
                 Ajouter
               </v-btn>
@@ -161,6 +164,49 @@
         </v-data-table>
       </v-card>
     </v-row>
+    <!-- SNACKBAR -->
+    <!-- Add customers -->
+    <v-snackbar color="green" v-model="snackbarAddCustomer"
+      >Cet utilisateur a bien été ajouté !
+      <template v-slot:action="{ attrs }">
+        <v-btn
+          color="white"
+          text
+          v-bind="attrs"
+          @click="snackbarAddCustomer = false"
+        >
+          Fermer
+        </v-btn>
+      </template>
+    </v-snackbar>
+    <!-- Update status -->
+    <v-snackbar color="green" v-model="snackbarUpdateCustomer"
+      >Cet utilisateur a bien été modifié !
+      <template v-slot:action="{ attrs }">
+        <v-btn
+          color="white"
+          text
+          v-bind="attrs"
+          @click="snackbarUpdateCustomer = false"
+        >
+          Fermer
+        </v-btn>
+      </template>
+    </v-snackbar>
+    <!-- Delete status -->
+    <v-snackbar color="green" v-model="snackbarDeleteCustomer"
+      >Votre utilisateur a bien été supprimée.
+      <template v-slot:action="{ attrs }">
+        <v-btn
+          color="white"
+          text
+          v-bind="attrs"
+          @click="snackbarDeleteCustomer = false"
+        >
+          Fermer
+        </v-btn>
+      </template>
+    </v-snackbar>
   </v-container>
 </template>
 

@@ -3,6 +3,11 @@ import Component from "vue-class-component";
 
 @Component
 export default class Status extends Vue {
+  // Snackbar
+  snackbarAddStatus = false;
+  snackbarUpdateStatus = false;
+  snackbarDeleteStatus = false;
+
   headersStatusTable = [
     {
       text: "Nom du statut",

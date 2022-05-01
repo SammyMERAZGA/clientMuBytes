@@ -3,10 +3,8 @@ import Component from "vue-class-component";
 
 @Component
 export default class Artworks extends Vue {
-
   // Adding an Artwork
   addArtworkDialog = false;
-
   calendarArtworkAdded = false;
   calendarArtworkCreated = false;
   calendarArtworkLoaned = false;
@@ -19,10 +17,14 @@ export default class Artworks extends Vue {
 
   // Editing an Artwork
   dialogArtwork = true;
-
   calendarArtworkAdded2 = false;
   calendarArtworkCreated2 = false;
   calendarArtworkLoaned2 = false;
+
+  // Snackbar
+  snackbarAddArtwork = false;
+  snackbarUpdateArtwork = false;
+  snackbarDeleteArtwork = false;
 
   page = 1;
 
