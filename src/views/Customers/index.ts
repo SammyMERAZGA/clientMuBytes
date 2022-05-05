@@ -26,7 +26,7 @@ export default class Customers extends Vue {
       value: "lastname",
     },
     { text: "Prénom", value: "firstname" },
-    { text: "Rôle", value: "role" },
+    { text: "Rôle", value: "role.libelle" },
     { text: "Email", value: "email" },
     { text: "Modifier", value: "update", sortable: false },
     { text: "Supprimer", value: "delete", sortable: false },
