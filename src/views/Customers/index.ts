@@ -1,5 +1,7 @@
 import Vue from "vue";
 import Component from "vue-class-component";
+import axios from "axios";
+import { Customer } from "../../types/Customer";
 
 @Component
 export default class Customers extends Vue {
@@ -15,6 +17,8 @@ export default class Customers extends Vue {
   snackbarUpdateCustomer = false;
   snackbarDeleteCustomer = false;
 
+  customers: Customer[] = [];
+
   headersCustomersTable = [
     {
       text: "Nom",
@@ -28,22 +32,13 @@ export default class Customers extends Vue {
     { text: "Supprimer", value: "delete", sortable: false },
   ];
 
-  customers = [
-    {
-      id: 1,
-      lastname: "Dupont",
-      firstname: "Jean",
-      role: "Admin",
-      email: "jean.dupont@gmail.com"
-    },
-    {
-      id: 2,
-      lastname: "Durand",
-      firstname: "Pierre",
-      role: "Super Admin",
-      email: "pierre.durant@gmail.com"
-    },
-  ];
-
   role = ["Admin", "Super Admin"];
+
+  async allCustomers(): Promise<void> {
+    this.customers = (await axios.get(`/utilisateur/all`)).data as Customer[];
+  }
+
+  mounted(): void {
+    this.allCustomers();
+  }
 }
