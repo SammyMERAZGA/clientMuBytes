@@ -4,7 +4,7 @@
       <div class="text-center mt-8 ml-8">
         <v-img
           id="whiteLogo"
-          src="../../assets/images/Logo/whiteMubytes.png"
+          src="../../assets/images/logo/whiteMubytes.png"
           alt="Logo"
           class="rounded-circle"
           height="50"
