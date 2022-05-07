@@ -1,11 +1,12 @@
 import Vue from "vue";
 import Component from "vue-class-component";
+import axios from "axios";
 
 @Component
 export default class Sidebar extends Vue {
   selectedItem = 0;
 
-  drawer = null;
+  drawer = false;
 
   // Snackbar
   snackbarLogout = false;
@@ -17,6 +18,16 @@ export default class Sidebar extends Vue {
     { icon: "mdi-domain", text: "Etablissements", url: "/establishments" },
     { icon: "mdi-list-status", text: "Statuts", url: "/status" },
     { icon: "mdi-account-group", text: "Utilisateurs", url: "/customers" },
-    { icon: "mdi-shield-lock", text: "Connexion", url: "/" },
   ];
+
+  get isLogged(): boolean {
+    return this.$store.state.isLog;
+  }
+
+  logout(): void {
+    this.$store.commit("nowLog", { val: false });
+    this.$router.push("/");
+    console.log("Logout success 🔴");
+    this.snackbarLogout = true;
+  }
 }

@@ -1,6 +1,12 @@
 <template>
   <nav>
-    <v-navigation-drawer dark app id="sidebar" width="100">
+    <v-navigation-drawer
+      v-if="$store.state.isLog === true"
+      dark
+      app
+      id="sidebar"
+      width="100"
+    >
       <div class="text-center mt-8 ml-8">
         <v-img
           id="whiteLogo"
@@ -30,7 +36,7 @@
         </v-list-item-group>
       </v-list>
       <div id="logout">
-        <v-btn text @click="snackbarLogout = true">
+        <v-btn text @click="logout()">
           <v-icon>mdi-logout</v-icon>
         </v-btn>
       </div>

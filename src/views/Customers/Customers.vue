@@ -64,8 +64,8 @@
                   </v-col>
                   <v-col cols="12">
                     <v-text-field
-                      label="Email"
                       v-model="email"
+                      label="Email"
                       placeholder="Entrer un email"
                       prepend-icon="mdi-email"
                       color="#fd2a65"
@@ -74,8 +74,8 @@
                   </v-col>
                   <v-col cols="12">
                     <v-text-field
-                      label="Mot de passe"
                       v-model="password"
+                      label="Mot de passe"
                       placeholder="Entrer un mot de passe"
                       type="password"
                       prepend-icon="mdi-key-variant"
@@ -85,7 +85,10 @@
                   </v-col>
                   <v-col class="d-flex" cols="12">
                     <v-select
-                      :items="role"
+                      v-model="role"
+                      :items="roles"
+                      item-text="name"
+                      item-value="id"
                       label="Rôle de l'utilisateur"
                       prepend-icon="mdi-redhat"
                       color="#fd2a65"
@@ -109,10 +112,7 @@
                 class="rounded-xl"
                 color="indigo"
                 text
-                @click="
-                  addUserDialog = false;
-                  snackbarAddCustomer = true;
-                "
+                @click="addCustomer()"
               >
                 Ajouter
               </v-btn>

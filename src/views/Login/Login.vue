@@ -15,6 +15,7 @@
                 <v-row align="center" justify="center">
                   <v-col cols="12" md="10">
                     <v-text-field
+                      v-model="email"
                       label="Email"
                       placeholder="Entrez votre e-mail"
                       outlined
@@ -23,6 +24,7 @@
                       class="mt-16"
                     />
                     <v-text-field
+                      v-model="password"
                       label="Mot de passe"
                       placeholder="Entrez votre mot de passe"
                       outlined
@@ -36,6 +38,7 @@
                       dark
                       block
                       tile
+                      @click="login()"
                       >Se connecter</v-btn
                     >
                   </v-col>

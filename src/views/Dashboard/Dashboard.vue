@@ -36,13 +36,13 @@
           >
             <v-list-item>
               <v-list-item-content>
-                <div class="overline text-center">Diagramme 3</div>
+                <div class="overline text-center">Nombre d'oeuvres par statut</div>
                 <div><v-divider class="mb-4"></v-divider></div>
               </v-list-item-content>
             </v-list-item>
             <apexchart
-              width="420px"
-              type="pie"
+              width="400px"
+              type="bar"
               :options="chart3Options"
               :series="chart3"
             ></apexchart>
@@ -52,7 +52,7 @@
           <v-card class="rounded-lg" elevation="10" width="500" height="350">
             <v-list-item>
               <v-list-item-content>
-                <div class="overline text-center">Diagramme 2</div>
+                <div class="overline text-center">Nombre d'oeuvres par mois</div>
                 <div><v-divider class="mb-4"></v-divider></div>
               </v-list-item-content>
             </v-list-item>

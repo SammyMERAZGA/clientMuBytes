@@ -3,8 +3,7 @@ module.exports = {
   devServer: {
     proxy: {
       "/api": {
-        target: "mubytes-api.herokuapp.com",
-        ws: true,
+        target: "https://mubytes-api.herokuapp.com",
         changeOrigin: true,
         cookieDomainRewrite: "localhost:8080",
       },

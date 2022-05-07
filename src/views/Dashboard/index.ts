@@ -4,15 +4,10 @@ import axios from "axios";
 
 @Component
 export default class Dashboard extends Vue {
-
   chart1 = [90, 40, 60];
 
   chart1Options = {
-    labels: [
-      "Ordinateurs",
-      "Pixels Arts",
-      "Tableaux"
-    ],
+    labels: ["Ordinateurs", "Pixels Arts", "Tableaux"],
     colors: ["#353E8D", "#fd2a65", "#fcd5dc"],
   };
 }
