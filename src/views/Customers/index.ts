@@ -2,23 +2,26 @@ import Vue from "vue";
 import Component from "vue-class-component";
 import axios from "axios";
 import { Customer } from "../../types/Customer";
+import { Role } from "../../types/Role";
 
 @Component
 export default class Customers extends Vue {
   addUserDialog = false;
+  updateCustomerDialog = false;
 
+  customerId = 0;
   lastname = "";
   firstname = "";
   email = "";
   password = "";
-  roles = [
+  roles: Role[] = [
     {
       id: 1,
-      name: "Admin",
+      label: "Admin",
     },
     {
-      value: 2,
-      name: "Super-Admin",
+      id: 2,
+      label: "Super-Admin",
     },
   ];
 
@@ -42,53 +45,57 @@ export default class Customers extends Vue {
     { text: "Supprimer", value: "delete", sortable: false },
   ];
 
-  async addCustomer(): Promise<void> {
-    try {
-      await axios.post(`https://mubytes-api.herokuapp.com/users/create`),
+  addCustomer(): void {
+    axios
+      .post(`https://mubytes-api.herokuapp.com/users/create`, {
+        lastname: this.lastname,
+        firstname: this.firstname,
+        email: this.email,
+        password: this.password,
+        role_id: this.roles[0].id,
+      })
+      .then(() => {
+        this.snackbarAddCustomer = true;
+        this.addUserDialog = false;
+        this.allCustomers();
+      });
+  }
+
+  editCustomer(item: Customer): void {
+    this.lastname = item.lastname;
+    this.firstname = item.firstname;
+    this.email = item.email;
+    this.password = item.password;
+    this.updateCustomerDialog = true;
+  }
+
+  updateCustomer(): void {
+    axios
+      .put(
+        `https://mubytes-api.herokuapp.com/users/modify/${this.customerId}`,
         {
           lastname: this.lastname,
           firstname: this.firstname,
           email: this.email,
           password: this.password,
           role_id: this.roles[0].id,
-        };
-      this.snackbarAddCustomer = true;
-      this.addUserDialog = false;
-      this.allCustomers();
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
-  async updateCustomer(customer: Customer): Promise<void> {
-    try {
-      await axios.put(
-        `https://mubytes-api.herokuapp.com/users/modify/${customer.id}`,
-        {
-          lastname: customer.lastname,
-          firstname: customer.firstname,
-          email: customer.email,
-          password: customer.password,
-          role: customer.role,
         }
-      );
-      this.snackbarUpdateCustomer = true;
-      this.allCustomers();
-    } catch (error) {
-      console.log(error);
-    }
+      )
+      .then(() => {
+        this.snackbarUpdateCustomer = true;
+        this.updateCustomerDialog = false;
+        this.customerId = 0;
+        this.allCustomers();
+      });
   }
 
-  async deleteCustomer(customer: Customer): Promise<void> {
-    try {
-      await axios.delete(
-        `https://mubytes-api.herokuapp.com/users/delete/${customer.id}`
-      );
-      this.snackbarDeleteCustomer = true;
-      this.allCustomers();
-    } catch (error) {
-      console.log(error);
-    }
+  deleteCustomer(id: number): void {
+    axios
+      .delete(`https://mubytes-api.herokuapp.com/users/delete/${id}`)
+      .then(() => {
+        this.snackbarDeleteCustomer = true;
+        this.allCustomers();
+      });
   }
 
   async allCustomers(): Promise<void> {

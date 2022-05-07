@@ -8,10 +8,14 @@ vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     isLog: false,
+    username: {},
   },
   mutations: {
     nowLog: function (state, { val }) {
       state.isLog = val;
     },
+    Customer: function (state, { val }) {
+      state.username = val;
+    }
   },
 });

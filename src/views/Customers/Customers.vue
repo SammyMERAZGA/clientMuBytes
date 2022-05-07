@@ -87,7 +87,7 @@
                     <v-select
                       v-model="role"
                       :items="roles"
-                      item-text="name"
+                      item-text="label"
                       item-value="id"
                       label="Rôle de l'utilisateur"
                       prepend-icon="mdi-redhat"
@@ -121,6 +121,7 @@
         </v-dialog>
       </v-col>
     </v-row>
+    <!-- Customers list -->
     <v-row>
       <v-card width="1500" class="rounded-xl mt-10" elevation="5">
         <v-data-table
@@ -150,13 +151,13 @@
             >
           </template>
           <template v-slot:[`item.update`]="{ item }">
-            <v-btn icon @click="editUser(item)">
+            <v-btn icon @click="editCustomer(item)">
               <v-icon small> mdi-pencil </v-icon>
             </v-btn>
           </template>
           <template v-slot:[`item.delete`]="{ item }">
             <v-btn icon>
-              <v-icon small color="red" @click="deleteUser(item.id)">
+              <v-icon small color="red" @click="deleteCustomer(item.id)">
                 mdi-delete
               </v-icon>
             </v-btn>
@@ -164,8 +165,103 @@
         </v-data-table>
       </v-card>
     </v-row>
+    <!-- Dialog update customer -->
+    <v-dialog
+      class="mb-15"
+      v-model="updateCustomerDialog"
+      persistent
+      max-width="600px"
+    >
+      <v-card class="rounded-xl">
+        <v-card-title>
+          <v-row align="center" justify="center">
+            <span class="text-h5 indigo--text mt-5"
+              >Modifier un utilisateur</span
+            >
+          </v-row>
+        </v-card-title>
+        <v-card-text>
+          <v-container>
+            <v-row>
+              <v-col cols="12">
+                <v-text-field
+                  v-model="lastname"
+                  label="Nom de famille"
+                  placeholder="Entrer un nom de famille"
+                  prepend-icon="mdi-account-circle"
+                  color="#fd2a65"
+                  required
+                ></v-text-field>
+              </v-col>
+              <v-col cols="12">
+                <v-text-field
+                  v-model="firstname"
+                  label="Prénom"
+                  placeholder="Entrer un prénom"
+                  prepend-icon="mdi-account-circle"
+                  color="#fd2a65"
+                  required
+                ></v-text-field>
+              </v-col>
+              <v-col cols="12">
+                <v-text-field
+                  v-model="email"
+                  label="Email"
+                  placeholder="Entrer un email"
+                  prepend-icon="mdi-email"
+                  color="#fd2a65"
+                  required
+                ></v-text-field>
+              </v-col>
+              <v-col cols="12">
+                <v-text-field
+                  v-model="password"
+                  label="Mot de passe"
+                  placeholder="Entrer un mot de passe"
+                  type="password"
+                  prepend-icon="mdi-key-variant"
+                  color="#fd2a65"
+                  required
+                ></v-text-field>
+              </v-col>
+              <v-col class="d-flex" cols="12">
+                <v-select
+                  v-model="role"
+                  :items="roles"
+                  item-text="label"
+                  item-value="id"
+                  label="Rôle de l'utilisateur"
+                  prepend-icon="mdi-redhat"
+                  color="#fd2a65"
+                  required
+                ></v-select>
+              </v-col>
+            </v-row>
+          </v-container>
+        </v-card-text>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn
+            class="rounded-xl"
+            color="red"
+            text
+            @click="updateCustomerDialog = false"
+          >
+            Annuler
+          </v-btn>
+          <v-btn
+            class="rounded-xl"
+            color="indigo"
+            text
+            @click="updateCustomer()"
+          >
+            Modifier
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
     <!-- SNACKBAR -->
-    <!-- Add customers -->
+    <!-- Add customer -->
     <v-snackbar color="green" v-model="snackbarAddCustomer"
       >Cet utilisateur a bien été ajouté !
       <template v-slot:action="{ attrs }">
@@ -179,7 +275,7 @@
         </v-btn>
       </template>
     </v-snackbar>
-    <!-- Update status -->
+    <!-- Update customer -->
     <v-snackbar color="green" v-model="snackbarUpdateCustomer"
       >Cet utilisateur a bien été modifié !
       <template v-slot:action="{ attrs }">
@@ -193,7 +289,7 @@
         </v-btn>
       </template>
     </v-snackbar>
-    <!-- Delete status -->
+    <!-- Delete customer -->
     <v-snackbar color="green" v-model="snackbarDeleteCustomer"
       >Votre utilisateur a bien été supprimée.
       <template v-slot:action="{ attrs }">

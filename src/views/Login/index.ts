@@ -23,6 +23,9 @@ export default class Login extends Vue {
         }
         this.$store.commit("nowLog", { val: true });
         console.log("Login success ✅" + this.$store.state.isLog);
+        // Demander à nassim de récupérer le nom de l'utilisateur lors de la connexion pour l'afficher dans la navbar
+        this.$store.commit("Customer", { val: response.data.username });
+        console.log("Customer 💁" + this.$store.state.username);
       })
       .catch((error) => {
         if (error.response.data.error) {
