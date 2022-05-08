@@ -24,7 +24,7 @@ export default class Customers extends Vue {
     },
     {
       id: 2,
-      label: "Super-Admin",
+      label: "User",
     },
   ];
 
@@ -72,18 +72,19 @@ export default class Customers extends Vue {
     this.email = item.email;
     this.password = item.password;
     this.updateCustomerDialog = true;
+    this.customerId = item.id;
   }
 
   updateCustomer(): void {
     axios
-      .put(
+      .post(
         `https://mubytes-api.herokuapp.com/users/modify/${this.customerId}`,
         {
           lastname: this.lastname,
           firstname: this.firstname,
           email: this.email,
           password: this.password,
-          role_id: this.roles[0].id,
+          role_id: this.role,
         }
       )
       .then(() => {

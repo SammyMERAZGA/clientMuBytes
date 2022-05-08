@@ -297,7 +297,7 @@
       </template>
     </v-snackbar>
     <!-- Delete customer -->
-    <v-snackbar color="green" v-model="snackbarDeleteCustomer"
+    <v-snackbar color="red" v-model="snackbarDeleteCustomer"
       >Votre utilisateur a bien été supprimée.
       <template v-slot:action="{ attrs }">
         <v-btn
