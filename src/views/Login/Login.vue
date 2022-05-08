@@ -1,5 +1,12 @@
 <template>
   <v-container>
+    <v-overlay :value="overlay">
+      <v-progress-circular
+        color="#fd2a65"
+        indeterminate
+        size="64"
+      ></v-progress-circular>
+    </v-overlay>
     <v-row align="center" justify="center">
       <img
         src="../../assets/images/logo/mubytesText.png"

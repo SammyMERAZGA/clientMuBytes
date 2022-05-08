@@ -4,6 +4,8 @@ import axios from "axios";
 
 @Component
 export default class Login extends Vue {
+  overlay = false;
+
   // Snackbar
   snackbarErrorPassword = false;
   snackbarContact = false;
@@ -12,6 +14,7 @@ export default class Login extends Vue {
   password = "";
 
   login(): void {
+    this.overlay = true;
     axios
       .post("https://mubytes-api.herokuapp.com/auth/login", {
         email: this.email,
@@ -20,6 +23,7 @@ export default class Login extends Vue {
       .then((response) => {
         if (response.data.success) {
           this.$router.push("/dashboard");
+          this.overlay = false;
         }
         this.$store.commit("nowLog", { val: true });
         console.log("Login success ✅" + this.$store.state.isLog);

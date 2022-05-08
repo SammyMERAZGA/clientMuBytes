@@ -9,11 +9,14 @@ export default class Customers extends Vue {
   addUserDialog = false;
   updateCustomerDialog = false;
 
+  overlay = false;
+
   customerId = 0;
   lastname = "";
   firstname = "";
   email = "";
   password = "";
+  role = "";
   roles: Role[] = [
     {
       id: 1,
@@ -46,18 +49,20 @@ export default class Customers extends Vue {
   ];
 
   addCustomer(): void {
+    this.overlay = true;
     axios
       .post(`https://mubytes-api.herokuapp.com/users/create`, {
         lastname: this.lastname,
         firstname: this.firstname,
         email: this.email,
         password: this.password,
-        role_id: this.roles[0].id,
+        role_id: this.role,
       })
       .then(() => {
         this.snackbarAddCustomer = true;
         this.addUserDialog = false;
         this.allCustomers();
+        this.overlay = false;
       });
   }
 

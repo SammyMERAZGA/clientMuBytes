@@ -1,5 +1,12 @@
 <template>
   <v-container>
+    <v-overlay :value="overlay">
+      <v-progress-circular
+        color="#fd2a65"
+        indeterminate
+        size="64"
+      ></v-progress-circular>
+    </v-overlay>
     <h1 class="text-center h1-mubytes mb-5">Liste des utilisateurs</h1>
     <v-row align="center" justify="center">
       <img
