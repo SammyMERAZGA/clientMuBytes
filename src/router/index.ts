@@ -1,5 +1,6 @@
 import Vue from "vue";
 import VueRouter, { RouteConfig } from "vue-router";
+import store from "../plugins/store";
 import Dashboard from "../views/Dashboard/Dashboard.vue";
 import Establishments from "../views/Establishment/Establishment.vue";
 import Artworks from "../views/Artworks/Artworks.vue";
@@ -37,6 +38,13 @@ const routes: Array<RouteConfig> = [
     path: "/customers",
     name: "Customers",
     component: Customers,
+    beforeEnter(to, from, next) {
+      if (store.state.isSuperAdmin === true) {
+        next();
+      } else {
+        next("/:pathMatch(.*)*");
+      }
+    },
   },
   {
     path: "/establishments",

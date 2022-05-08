@@ -2,7 +2,7 @@
   <v-app-bar app color="white" flat>
     <v-spacer></v-spacer>
     <span v-if="$store.state.isLog === true" id="username"
-      >Bonjour Sammy Merazga !</span
+      >Bonjour {{ getFirstname() + " " + getLastname() }}</span
     >
   </v-app-bar>
 </template>

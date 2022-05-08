@@ -8,14 +8,26 @@ vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     isLog: false,
-    username: {},
+    isSuperAdmin: false,
+    lastname: "",
+    firstname: "",
+    role_id: 0,
   },
   mutations: {
     nowLog: function (state, { val }) {
       state.isLog = val;
     },
-    Customer: function (state, { val }) {
-      state.username = val;
+    lastnameCustomer: function (state, { val }) {
+      state.lastname = val;
+    },
+    firstnameCustomer: function (state, { val }) {
+      state.firstname = val;
+    },
+    roleIdCustomer: function (state, { val }) {
+      state.role_id = val;
+    },
+    superAdmin: function (state, { val }) {
+      state.isSuperAdmin = val;
     }
   },
 });

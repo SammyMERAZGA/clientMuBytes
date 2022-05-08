@@ -110,7 +110,7 @@
           </template>
           <template v-slot:[`item.update`]="{ item }">
             <v-btn icon @click="editUser(item)">
-              <v-icon small> mdi-pencil </v-icon>
+              <v-icon small color="black"> mdi-pencil </v-icon>
             </v-btn>
           </template>
           <template v-slot:[`item.delete`]="{ item }">

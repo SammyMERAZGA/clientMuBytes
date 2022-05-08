@@ -26,10 +26,25 @@ export default class Login extends Vue {
           this.overlay = false;
         }
         this.$store.commit("nowLog", { val: true });
+        this.$store.commit("lastnameCustomer", {
+          val: response.data.user.lastname,
+        });
+        this.$store.commit("firstnameCustomer", {
+          val: response.data.user.firstname,
+        });
+        this.$store.commit("roleIdCustomer", {
+          val: response.data.user.role_id,
+        });
+        if (this.$store.state.role_id === 1) {
+          this.$store.commit("superAdmin", { val: true });
+        } else {
+          this.$store.commit("superAdmin", { val: false });
+        };
+        console.log("🚨" + this.$store.state.isSuperAdmin);
         console.log("Login success ✅" + this.$store.state.isLog);
-        // Demander à nassim de récupérer le nom de l'utilisateur lors de la connexion pour l'afficher dans la navbar
-        this.$store.commit("Customer", { val: response.data.username });
-        console.log("Customer 💁" + this.$store.state.username);
+        console.log("😁 Lastname : " + this.$store.state.lastname);
+        console.log("🥹 Firstname : " + this.$store.state.firstname);
+        console.log("🦁 Role_id : " + this.$store.state.role_id);
       })
       .catch((error) => {
         if (error.response.data.error) {

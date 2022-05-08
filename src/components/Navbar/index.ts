@@ -5,7 +5,11 @@ import axios from "axios";
 @Component
 export default class Navbar extends Vue {
 
-  getName() {
-    return this.$store.state.user.name;
+  getLastname() {
+    return this.$store.state.lastname;
+  }
+
+  getFirstname() {
+    return this.$store.state.firstname;
   }
 }
