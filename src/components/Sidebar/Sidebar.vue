@@ -19,26 +19,36 @@
       </div>
       <v-list flat class="mt-5">
         <v-list-item-group v-model="selectedItem" color="black">
-          <v-list-item
-            v-for="(item, i) in items"
-            :to="item.url"
-            :key="i"
-            active-class="border"
-            class="ml-2 my-3"
-            :ripple="false"
-          >
-            <b></b>
-            <b></b>
-            <v-list-item-icon>
-              <v-icon v-text="item.icon"></v-icon>
-            </v-list-item-icon>
-          </v-list-item>
+          <v-tooltip v-for="(item, i) in items" :key="i" right color="#fd2a65">
+            <template v-slot:activator="{ on, attrs }">
+              <v-list-item
+                :to="item.url"
+                active-class="border"
+                class="ml-2 my-3"
+                :ripple="false"
+                v-bind="attrs"
+                v-on="on"
+              >
+                <b></b>
+                <b></b>
+                <v-list-item-icon>
+                  <v-icon v-text="item.icon"></v-icon>
+                </v-list-item-icon>
+              </v-list-item>
+            </template>
+            <span>{{ item.text }}</span>
+          </v-tooltip>
         </v-list-item-group>
       </v-list>
       <div id="logout">
-        <v-btn text @click="logout()">
-          <v-icon>mdi-logout</v-icon>
-        </v-btn>
+        <v-tooltip right color="#fd2a65">
+          <template v-slot:activator="{ on, attrs }">
+            <v-btn text @click="logout()" v-bind="attrs" v-on="on">
+              <v-icon>mdi-logout</v-icon>
+            </v-btn>
+          </template>
+          <span>Se déconnecter</span>
+        </v-tooltip>
       </div>
     </v-navigation-drawer>
     <!-- SNACKBAR -->

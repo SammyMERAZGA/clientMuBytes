@@ -13,9 +13,9 @@ export default class Sidebar extends Vue {
 
   items = [
     { icon: "mdi-view-dashboard", text: "Dashboard", url: "/dashboard" },
-    { icon: "mdi-shape", text: "Catégories", url: "/categories" },
-    { icon: "mdi-bank", text: "Oeuvres", url: "/artworks" },
-    { icon: "mdi-domain", text: "Etablissements", url: "/establishments" },
+    { icon: "mdi-format-list-bulleted-square", text: "Catégories", url: "/categories" },
+    { icon: "mdi-panorama", text: "Oeuvres", url: "/artworks" },
+    { icon: "mdi-home-city", text: "Établissements", url: "/establishments" },
     { icon: "mdi-list-status", text: "Statuts", url: "/status" },
     { icon: "mdi-account-group", text: "Utilisateurs", url: "/customers" },
   ];

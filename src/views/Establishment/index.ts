@@ -3,11 +3,18 @@ import Component from "vue-class-component";
 
 @Component
 export default class Establishment extends Vue {
+  addEstablishmentDialog = false;
 
   // Snackbar
-  snackbarAddEtablishment = false;
-  snackbarUpdateEtablishment = false;
-  snackbarDeleteEtablishment = false;
+  snackbarAddEstablishment = false;
+  snackbarUpdateEstablishment = false;
+  snackbarDeleteEstablishment = false;
+
+  name = "";
+  address = "";
+  postalCode = "";
+  city = "";
+  phone = "";
 
   headersEstablishmentsTable = [
     {

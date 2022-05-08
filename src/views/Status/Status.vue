@@ -10,16 +10,74 @@
       />
     </v-row>
     <v-row align="center" justify="center">
-      <h1 class="overline indigo--text text-center mt-3">Ajouter un statut</h1>
-      <v-col cols="12">
-        <v-btn
-          id="btnAddStatus"
-          class="rounded-xl mt-2"
-          color="blue darken-4"
-          dark
+      <v-col cols="12" sm="4">
+        <h1 class="overline indigo--text text-center mt-5">
+          Ajouter un statut
+        </h1>
+        <v-dialog
+          class="mb-15"
+          v-model="addStatusDialog"
+          persistent
+          max-width="600px"
         >
-          <v-icon>mdi-tag-plus</v-icon>
-        </v-btn>
+          <template v-slot:activator="{ on, attrs }">
+            <v-btn
+              id="btnAddStatus"
+              class="rounded-xl mt-5"
+              color="blue darken-4"
+              dark
+              v-bind="attrs"
+              v-on="on"
+            >
+              <v-icon>mdi-tag-plus</v-icon>
+            </v-btn>
+          </template>
+          <v-card class="rounded-xl">
+            <v-card-title>
+              <v-row align="center" justify="center">
+                <span class="text-h5 indigo--text mt-5">Ajouter un statut</span>
+              </v-row>
+            </v-card-title>
+            <v-card-text>
+              <v-container>
+                <v-row>
+                  <v-col cols="12">
+                    <v-text-field
+                      v-model="name"
+                      label="Nom du statut"
+                      placeholder="Entrer le nom du statut"
+                      prepend-icon="mdi-tag"
+                      color="#fd2a65"
+                      required
+                    ></v-text-field>
+                  </v-col>
+                </v-row>
+              </v-container>
+            </v-card-text>
+            <v-card-actions>
+              <v-spacer></v-spacer>
+              <v-btn
+                class="rounded-xl"
+                color="red"
+                text
+                @click="addStatusDialog = false"
+              >
+                Annuler
+              </v-btn>
+              <v-btn
+                class="rounded-xl"
+                color="indigo"
+                text
+                @click="
+                  addStatusDialog = false;
+                  snackbarAddStatus = true;
+                "
+              >
+                Ajouter
+              </v-btn>
+            </v-card-actions>
+          </v-card>
+        </v-dialog>
       </v-col>
     </v-row>
     <v-row justify="center">

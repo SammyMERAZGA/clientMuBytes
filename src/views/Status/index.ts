@@ -3,10 +3,14 @@ import Component from "vue-class-component";
 
 @Component
 export default class Status extends Vue {
+  addStatusDialog = false;
+
   // Snackbar
   snackbarAddStatus = false;
   snackbarUpdateStatus = false;
   snackbarDeleteStatus = false;
+
+  name = "";
 
   headersStatusTable = [
     {

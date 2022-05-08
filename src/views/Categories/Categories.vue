@@ -29,7 +29,7 @@
               v-bind="attrs"
               v-on="on"
             >
-              <v-icon>mdi-shape-plus</v-icon>
+              <v-icon>mdi-playlist-plus</v-icon>
             </v-btn>
           </template>
           <v-card class="rounded-xl">
@@ -48,6 +48,7 @@
                       v-model="category"
                       label="Nom de la catégorie"
                       placeholder="Entrer le nom de la catégorie"
+                      prepend-icon="mdi-format-list-bulleted-square"
                       color="#fd2a65"
                       required
                     ></v-text-field>

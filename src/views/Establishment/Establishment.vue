@@ -10,18 +10,116 @@
       />
     </v-row>
     <v-row align="center" justify="center">
-      <h1 class="overline indigo--text text-center mt-8">
-        Ajouter un établissement
-      </h1>
-      <v-col cols="12">
-        <v-btn
-          id="btnAddEstablishment"
-          class="rounded-xl mt-2"
-          color="blue darken-4"
-          dark
+      <v-col cols="12" sm="4">
+        <h1 class="overline indigo--text text-center mt-5">
+          Ajouter un établissement
+        </h1>
+        <v-dialog
+          class="mb-15"
+          v-model="addEstablishmentDialog"
+          persistent
+          max-width="600px"
         >
-          <v-icon>mdi-domain-plus</v-icon>
-        </v-btn>
+          <template v-slot:activator="{ on, attrs }">
+            <v-btn
+              id="btnAddEstablishment"
+              class="rounded-xl"
+              color="blue darken-4"
+              v-bind="attrs"
+              v-on="on"
+              dark
+            >
+              <v-icon>mdi-domain-plus</v-icon>
+            </v-btn>
+          </template>
+          <v-card class="rounded-xl">
+            <v-card-title>
+              <v-row align="center" justify="center">
+                <span class="text-h5 indigo--text mt-5"
+                  >Ajouter un établissement</span
+                >
+              </v-row>
+            </v-card-title>
+            <v-card-text>
+              <v-container>
+                <v-row>
+                  <v-col cols="12">
+                    <v-text-field
+                      v-model="name"
+                      label="Nom de l'établissement"
+                      placeholder="Entrer le nom de l'établissement"
+                      prepend-icon="mdi-office-building-outline"
+                      color="#fd2a65"
+                      required
+                    ></v-text-field>
+                  </v-col>
+                  <v-col cols="12">
+                    <v-text-field
+                      v-model="address"
+                      label="Adresse de l'établissement"
+                      placeholder="Entrer l'adresse de l'établissement"
+                      prepend-icon="mdi-map-marker-outline"
+                      color="#fd2a65"
+                      required
+                    ></v-text-field>
+                  </v-col>
+                  <v-col cols="12" sm="6" md="4">
+                    <v-text-field
+                      v-model="postalCode"
+                      label="Code postal"
+                      placeholder="XXXXX"
+                      prepend-icon="mdi-cellphone-marker"
+                      color="#fd2a65"
+                      required
+                    ></v-text-field>
+                  </v-col>
+                  <v-col cols="12" sm="6" md="8">
+                    <v-text-field
+                      v-model="city"
+                      label="Ville de l'établissement"
+                      placeholder="Entrer la ville de l'établissement"
+                      prepend-icon="mdi-map-search"
+                      color="#fd2a65"
+                      required
+                    ></v-text-field>
+                  </v-col>
+                  <v-col cols="12">
+                    <v-text-field
+                      v-model="phone"
+                      label="Numéro de téléphone"
+                      placeholder="Entrer le numéro de téléphone"
+                      prepend-icon="mdi-phone"
+                      color="#fd2a65"
+                      required
+                    ></v-text-field>
+                  </v-col>
+                </v-row>
+              </v-container>
+            </v-card-text>
+            <v-card-actions>
+              <v-spacer></v-spacer>
+              <v-btn
+                class="rounded-xl"
+                color="red"
+                text
+                @click="addEstablishmentDialog = false"
+              >
+                Annuler
+              </v-btn>
+              <v-btn
+                class="rounded-xl"
+                color="indigo"
+                text
+                @click="
+                  addEstablishmentDialog = false;
+                  snackbarAddEstablishment = true;
+                "
+              >
+                Ajouter
+              </v-btn>
+            </v-card-actions>
+          </v-card>
+        </v-dialog>
       </v-col>
     </v-row>
     <v-row class="ml-15 mr-15">
@@ -69,42 +167,42 @@
     </v-row>
     <!-- SNACKBAR -->
     <!-- Add etablishment -->
-    <v-snackbar color="green" v-model="snackbarAddEtablishment"
+    <v-snackbar color="green" v-model="snackbarAddEstablishment"
       >Votre établissement a bien été ajouté !
       <template v-slot:action="{ attrs }">
         <v-btn
           color="white"
           text
           v-bind="attrs"
-          @click="snackbarAddEtablishment = false"
+          @click="snackbarAddEstablishment = false"
         >
           Fermer
         </v-btn>
       </template>
     </v-snackbar>
     <!-- Update category -->
-    <v-snackbar color="green" v-model="snackbarUpdateEtablishment"
+    <v-snackbar color="green" v-model="snackbarUpdateEstablishment"
       >Votre établissement a bien été modifié !
       <template v-slot:action="{ attrs }">
         <v-btn
           color="white"
           text
           v-bind="attrs"
-          @click="snackbarUpdateEtablishment = false"
+          @click="snackbarUpdateEstablishment = false"
         >
           Fermer
         </v-btn>
       </template>
     </v-snackbar>
     <!-- Delete category -->
-    <v-snackbar color="green" v-model="snackbarDeleteEtablishment"
+    <v-snackbar color="green" v-model="snackbarDeleteEstablishment"
       >Votre établissement a bien été supprimée.
       <template v-slot:action="{ attrs }">
         <v-btn
           color="white"
           text
           v-bind="attrs"
-          @click="snackbarDeleteEtablishment = false"
+          @click="snackbarDeleteEstablishment = false"
         >
           Fermer
         </v-btn>

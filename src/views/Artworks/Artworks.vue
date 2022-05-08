@@ -30,7 +30,7 @@
               v-bind="attrs"
               v-on="on"
             >
-              <v-icon>mdi-bank-plus</v-icon>
+              <v-icon>mdi-image-plus</v-icon>
             </v-btn>
           </template>
           <v-card class="rounded-xl">
