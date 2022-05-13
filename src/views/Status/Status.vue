@@ -5,7 +5,7 @@
       <img
         class="mt-5"
         src="../../assets/images/UnDraw/status.png"
-        alt="categories"
+        alt="status"
         width="300"
       />
     </v-row>
@@ -21,16 +21,17 @@
           max-width="600px"
         >
           <template v-slot:activator="{ on, attrs }">
-            <v-btn
-              id="btnAddStatus"
-              class="rounded-xl mt-5"
-              color="blue darken-4"
-              dark
-              v-bind="attrs"
-              v-on="on"
-            >
-              <v-icon>mdi-tag-plus</v-icon>
-            </v-btn>
+            <v-row align="center" justify="center">
+              <v-btn
+                class="rounded-xl mt-10"
+                color="blue darken-4"
+                dark
+                v-bind="attrs"
+                v-on="on"
+              >
+                <v-icon>mdi-tag-plus</v-icon>
+              </v-btn>
+            </v-row>
           </template>
           <v-card class="rounded-xl">
             <v-card-title>

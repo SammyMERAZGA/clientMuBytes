@@ -28,16 +28,17 @@
           max-width="600px"
         >
           <template v-slot:activator="{ on, attrs }">
-            <v-btn
-              id="btnAddEstablishment"
-              class="rounded-xl"
-              color="blue darken-4"
-              v-bind="attrs"
-              v-on="on"
-              dark
-            >
-              <v-icon>mdi-domain-plus</v-icon>
-            </v-btn>
+            <v-row align="center" justify="center">
+              <v-btn
+                class="rounded-xl mt-10"
+                color="blue darken-4"
+                v-bind="attrs"
+                v-on="on"
+                dark
+              >
+                <v-icon>mdi-domain-plus</v-icon>
+              </v-btn>
+            </v-row>
           </template>
           <v-card class="rounded-xl">
             <v-card-title>
@@ -126,7 +127,7 @@
         </v-dialog>
       </v-col>
     </v-row>
-    <v-row class="ml-15 mr-15">
+    <v-row align="center" justify="center">
       <v-card width="1500" class="rounded-xl mt-10" elevation="5">
         <v-data-table
           :headers="headersEstablishmentsTable"

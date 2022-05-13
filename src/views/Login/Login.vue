@@ -13,6 +13,8 @@
         alt="Mubytes"
         width="200"
       />
+    </v-row>
+    <v-row align="center" justify="center">
       <v-col cols="12" sm="10">
         <v-card class="elevation-6 mt-15 rounded-xl">
           <v-row>

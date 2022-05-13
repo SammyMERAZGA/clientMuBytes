@@ -27,16 +27,17 @@
           max-width="600px"
         >
           <template v-slot:activator="{ on, attrs }">
-            <v-btn
-              id="btnAddUser"
-              class="rounded-xl mt-5"
-              color="blue darken-4"
-              dark
-              v-bind="attrs"
-              v-on="on"
-            >
-              <v-icon>mdi-account-plus</v-icon>
-            </v-btn>
+            <v-row align="center" justify="center">
+              <v-btn
+                class="rounded-xl mt-10"
+                color="blue darken-4"
+                dark
+                v-bind="attrs"
+                v-on="on"
+              >
+                <v-icon>mdi-account-plus</v-icon>
+              </v-btn>
+            </v-row>
           </template>
           <v-card class="rounded-xl">
             <v-card-title>
@@ -129,7 +130,7 @@
       </v-col>
     </v-row>
     <!-- Customers list -->
-    <v-row>
+    <v-row justify="center" align="center">
       <v-card width="1500" class="rounded-xl mt-10" elevation="5">
         <v-data-table
           :headers="headersCustomersTable"
