@@ -1,5 +1,12 @@
 <template>
   <div>
+    <v-overlay :value="overlay">
+      <v-progress-circular
+        color="#fd2a65"
+        indeterminate
+        size="64"
+      ></v-progress-circular>
+    </v-overlay>
     <h1 class="text-center h1-mubytes">Liste des statuts</h1>
     <v-row align="center" justify="center">
       <img
@@ -44,7 +51,7 @@
                 <v-row>
                   <v-col cols="12">
                     <v-text-field
-                      v-model="name"
+                      v-model="libelle"
                       label="Nom du statut"
                       placeholder="Entrer le nom du statut"
                       prepend-icon="mdi-tag"
@@ -69,10 +76,7 @@
                 class="rounded-xl"
                 color="indigo"
                 text
-                @click="
-                  addStatusDialog = false;
-                  snackbarAddStatus = true;
-                "
+                @click="addStatus()"
               >
                 Ajouter
               </v-btn>
@@ -110,13 +114,13 @@
             >
           </template>
           <template v-slot:[`item.update`]="{ item }">
-            <v-btn icon @click="editUser(item)">
+            <v-btn icon @click="editStatus(item)">
               <v-icon small color="black"> mdi-pencil </v-icon>
             </v-btn>
           </template>
           <template v-slot:[`item.delete`]="{ item }">
             <v-btn icon>
-              <v-icon small color="red" @click="deleteUser(item.id)">
+              <v-icon small color="red" @click="deleteStatus(item.id)">
                 mdi-delete
               </v-icon>
             </v-btn>
@@ -124,6 +128,55 @@
         </v-data-table>
       </v-card>
     </v-row>
+    <!-- Dialog update category -->
+    <v-dialog
+      class="mb-15"
+      v-model="updateStatusDialog"
+      persistent
+      max-width="600px"
+    >
+      <v-card class="rounded-xl">
+        <v-card-title>
+          <v-row align="center" justify="center">
+            <span class="text-h5 indigo--text mt-5">Modifier un statut</span>
+          </v-row>
+        </v-card-title>
+        <v-card-text>
+          <v-container>
+            <v-row align="center" justify="center">
+              <v-btn
+                class="rounded-xl mt-10"
+                color="blue darken-4"
+                dark
+                v-bind="attrs"
+                v-on="on"
+              >
+                <v-icon>mdi-tag-plus</v-icon>
+              </v-btn>
+            </v-row>
+          </v-container>
+        </v-card-text>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn
+            class="rounded-xl"
+            color="red"
+            text
+            @click="updateStatusDialog = false"
+          >
+            Annuler
+          </v-btn>
+          <v-btn
+            class="rounded-xl"
+            color="indigo"
+            text
+            @click="updateStatus()"
+          >
+            Modifier
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
     <!-- SNACKBAR -->
     <!-- Add status -->
     <v-snackbar color="green" v-model="snackbarAddStatus"
@@ -140,7 +193,7 @@
       </template>
     </v-snackbar>
     <!-- Update status -->
-    <v-snackbar color="green" v-model="snackbarUpdateStatus"
+    <v-snackbar color="blue" v-model="snackbarUpdateStatus"
       >Votre statut a bien été modifié !
       <template v-slot:action="{ attrs }">
         <v-btn
@@ -154,7 +207,7 @@
       </template>
     </v-snackbar>
     <!-- Delete status -->
-    <v-snackbar color="green" v-model="snackbarDeleteStatus"
+    <v-snackbar color="red" v-model="snackbarDeleteStatus"
       >Votre statut a bien été supprimée.
       <template v-slot:action="{ attrs }">
         <v-btn

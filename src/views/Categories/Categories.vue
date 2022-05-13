@@ -1,5 +1,12 @@
 <template>
   <v-container>
+    <v-overlay :value="overlay">
+      <v-progress-circular
+        color="#fd2a65"
+        indeterminate
+        size="64"
+      ></v-progress-circular>
+    </v-overlay>
     <h1 class="text-center h1-mubytes">Catégories</h1>
     <v-row align="center" justify="center">
       <img
@@ -46,7 +53,7 @@
                 <v-row>
                   <v-col cols="12">
                     <v-text-field
-                      v-model="category"
+                      v-model="libelle"
                       label="Nom de la catégorie"
                       placeholder="Entrer le nom de la catégorie"
                       prepend-icon="mdi-format-list-bulleted-square"
@@ -71,10 +78,7 @@
                 class="rounded-xl"
                 color="indigo"
                 text
-                @click="
-                  addCategoryDialog = false;
-                  snackbarAddCategory = true;
-                "
+                @click="addCategory()"
               >
                 Ajouter
               </v-btn>
@@ -112,13 +116,13 @@
             >
           </template>
           <template v-slot:[`item.update`]="{ item }">
-            <v-btn icon @click="editUser(item)">
+            <v-btn icon @click="editCategory(item)">
               <v-icon small color="black"> mdi-pencil </v-icon>
             </v-btn>
           </template>
           <template v-slot:[`item.delete`]="{ item }">
             <v-btn icon>
-              <v-icon small color="red" @click="deleteUser(item.id)">
+              <v-icon small color="red" @click="deleteCategory(item.id)">
                 mdi-delete
               </v-icon>
             </v-btn>
@@ -126,6 +130,58 @@
         </v-data-table>
       </v-card>
     </v-row>
+    <!-- Dialog update category -->
+    <v-dialog
+      class="mb-15"
+      v-model="updateCategoryDialog"
+      persistent
+      max-width="600px"
+    >
+      <v-card class="rounded-xl">
+        <v-card-title>
+          <v-row align="center" justify="center">
+            <span class="text-h5 indigo--text mt-5"
+              >Modifier une catégorie</span
+            >
+          </v-row>
+        </v-card-title>
+        <v-card-text>
+          <v-container>
+            <v-row>
+              <v-col cols="12">
+                <v-text-field
+                  v-model="libelle"
+                  label="Nom de la catégorie"
+                  placeholder="Entrer le nom de la catégorie"
+                  prepend-icon="mdi-format-list-bulleted-square"
+                  color="#fd2a65"
+                  required
+                ></v-text-field>
+              </v-col>
+            </v-row>
+          </v-container>
+        </v-card-text>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn
+            class="rounded-xl"
+            color="red"
+            text
+            @click="updateCategoryDialog = false"
+          >
+            Annuler
+          </v-btn>
+          <v-btn
+            class="rounded-xl"
+            color="indigo"
+            text
+            @click="updateCategory()"
+          >
+            Modifier
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
     <!-- SNACKBAR -->
     <!-- Add category -->
     <v-snackbar color="green" v-model="snackbarAddCategory"
@@ -142,7 +198,7 @@
       </template>
     </v-snackbar>
     <!-- Update category -->
-    <v-snackbar color="green" v-model="snackbarUpdateCategory"
+    <v-snackbar color="blue" v-model="snackbarUpdateCategory"
       >Votre catégorie a bien été modifiée !
       <template v-slot:action="{ attrs }">
         <v-btn
@@ -156,7 +212,7 @@
       </template>
     </v-snackbar>
     <!-- Delete category -->
-    <v-snackbar color="green" v-model="snackbarDeleteCategory"
+    <v-snackbar color="red" v-model="snackbarDeleteCategory"
       >Votre catégorie a bien été supprimée.
       <template v-slot:action="{ attrs }">
         <v-btn
