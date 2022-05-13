@@ -1,5 +1,12 @@
 <template>
   <div>
+    <v-overlay :value="overlay">
+      <v-progress-circular
+        color="#fd2a65"
+        indeterminate
+        size="64"
+      ></v-progress-circular>
+    </v-overlay>
     <h1 class="text-center h1-mubytes">Liste des établissements</h1>
     <v-row align="center" justify="center">
       <img
@@ -55,7 +62,7 @@
                   </v-col>
                   <v-col cols="12">
                     <v-text-field
-                      v-model="address"
+                      v-model="adress"
                       label="Adresse de l'établissement"
                       placeholder="Entrer l'adresse de l'établissement"
                       prepend-icon="mdi-map-marker-outline"
@@ -65,7 +72,7 @@
                   </v-col>
                   <v-col cols="12" sm="6" md="4">
                     <v-text-field
-                      v-model="postalCode"
+                      v-model="zip_Code"
                       label="Code postal"
                       placeholder="XXXXX"
                       prepend-icon="mdi-cellphone-marker"
@@ -85,10 +92,10 @@
                   </v-col>
                   <v-col cols="12">
                     <v-text-field
-                      v-model="phone"
-                      label="Numéro de téléphone"
-                      placeholder="Entrer le numéro de téléphone"
-                      prepend-icon="mdi-phone"
+                      v-model="quality"
+                      label="Qualité de l'établissement"
+                      placeholder="Entrer la qualité de l'établissement"
+                      prepend-icon="mdi-star-half-full"
                       color="#fd2a65"
                       required
                     ></v-text-field>
@@ -110,10 +117,7 @@
                 class="rounded-xl"
                 color="indigo"
                 text
-                @click="
-                  addEstablishmentDialog = false;
-                  snackbarAddEstablishment = true;
-                "
+                @click="addEstablishment()"
               >
                 Ajouter
               </v-btn>
@@ -151,13 +155,13 @@
             >
           </template>
           <template v-slot:[`item.update`]="{ item }">
-            <v-btn icon @click="editUser(item)">
+            <v-btn icon @click="editEstablishment(item)">
               <v-icon small color="black"> mdi-pencil </v-icon>
             </v-btn>
           </template>
           <template v-slot:[`item.delete`]="{ item }">
             <v-btn icon>
-              <v-icon small color="red" @click="deleteUser(item.id)">
+              <v-icon small color="red" @click="deleteEstablishment(item.id)">
                 mdi-delete
               </v-icon>
             </v-btn>
@@ -165,6 +169,98 @@
         </v-data-table>
       </v-card>
     </v-row>
+    <!-- Dialog update customer -->
+    <v-dialog
+      class="mb-15"
+      v-model="updateEstablishmentDialog"
+      persistent
+      max-width="600px"
+    >
+      <v-card class="rounded-xl">
+        <v-card-title>
+          <v-row align="center" justify="center">
+            <span class="text-h5 indigo--text mt-5"
+              >Modifier un établissement</span
+            >
+          </v-row>
+        </v-card-title>
+        <v-card-text>
+          <v-container>
+            <v-row>
+              <v-col cols="12">
+                <v-text-field
+                  v-model="name"
+                  label="Nom de l'établissement"
+                  placeholder="Entrer le nom de l'établissement"
+                  prepend-icon="mdi-office-building-outline"
+                  color="#fd2a65"
+                  required
+                ></v-text-field>
+              </v-col>
+              <v-col cols="12">
+                <v-text-field
+                  v-model="adress"
+                  label="Adresse de l'établissement"
+                  placeholder="Entrer l'adresse de l'établissement"
+                  prepend-icon="mdi-map-marker-outline"
+                  color="#fd2a65"
+                  required
+                ></v-text-field>
+              </v-col>
+              <v-col cols="12" sm="6" md="4">
+                <v-text-field
+                  v-model="zip_Code"
+                  label="Code postal"
+                  placeholder="XXXXX"
+                  prepend-icon="mdi-cellphone-marker"
+                  color="#fd2a65"
+                  required
+                ></v-text-field>
+              </v-col>
+              <v-col cols="12" sm="6" md="8">
+                <v-text-field
+                  v-model="city"
+                  label="Ville de l'établissement"
+                  placeholder="Entrer la ville de l'établissement"
+                  prepend-icon="mdi-map-search"
+                  color="#fd2a65"
+                  required
+                ></v-text-field>
+              </v-col>
+              <v-col cols="12">
+                <v-text-field
+                  v-model="quality"
+                  label="Qualité de l'établissement"
+                  placeholder="Entrer la qualité de l'établissement"
+                  prepend-icon="mdi-star-half-full"
+                  color="#fd2a65"
+                  required
+                ></v-text-field>
+              </v-col>
+            </v-row>
+          </v-container>
+        </v-card-text>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn
+            class="rounded-xl"
+            color="red"
+            text
+            @click="updateEstablishmentDialog = false"
+          >
+            Annuler
+          </v-btn>
+          <v-btn
+            class="rounded-xl"
+            color="indigo"
+            text
+            @click="updateEstablishment()"
+          >
+            Modifier
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
     <!-- SNACKBAR -->
     <!-- Add etablishment -->
     <v-snackbar color="green" v-model="snackbarAddEstablishment"
@@ -180,8 +276,8 @@
         </v-btn>
       </template>
     </v-snackbar>
-    <!-- Update category -->
-    <v-snackbar color="green" v-model="snackbarUpdateEstablishment"
+    <!-- Update etablishment -->
+    <v-snackbar color="blue" v-model="snackbarUpdateEstablishment"
       >Votre établissement a bien été modifié !
       <template v-slot:action="{ attrs }">
         <v-btn
@@ -194,8 +290,8 @@
         </v-btn>
       </template>
     </v-snackbar>
-    <!-- Delete category -->
-    <v-snackbar color="green" v-model="snackbarDeleteEstablishment"
+    <!-- Delete etablishment -->
+    <v-snackbar color="red" v-model="snackbarDeleteEstablishment"
       >Votre établissement a bien été supprimée.
       <template v-slot:action="{ attrs }">
         <v-btn

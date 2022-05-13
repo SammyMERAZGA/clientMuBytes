@@ -17,6 +17,9 @@ export default class Customers extends Vue {
   email = "";
   password = "";
   role = "";
+
+  customers: Customer[] = [];
+
   roles: Role[] = [
     {
       id: 1,
@@ -32,8 +35,6 @@ export default class Customers extends Vue {
   snackbarAddCustomer = false;
   snackbarUpdateCustomer = false;
   snackbarDeleteCustomer = false;
-
-  customers: Customer[] = [];
 
   headersCustomersTable = [
     {

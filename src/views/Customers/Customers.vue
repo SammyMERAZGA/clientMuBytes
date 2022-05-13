@@ -283,7 +283,7 @@
       </template>
     </v-snackbar>
     <!-- Update customer -->
-    <v-snackbar color="green" v-model="snackbarUpdateCustomer"
+    <v-snackbar color="blue" v-model="snackbarUpdateCustomer"
       >Cet utilisateur a bien été modifié !
       <template v-slot:action="{ attrs }">
         <v-btn
