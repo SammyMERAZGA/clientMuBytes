@@ -33,7 +33,7 @@ export default class Status extends Vue {
   addStatus(): void {
     this.overlay = true;
     axios
-      .put(`https://mubytes-api.herokuapp.com/status/create`, {
+      .post(`https://mubytes-api.herokuapp.com/status/create`, {
         libelle: this.libelle,
       })
       .then(() => {

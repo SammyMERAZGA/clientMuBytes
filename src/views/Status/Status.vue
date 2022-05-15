@@ -128,7 +128,7 @@
         </v-data-table>
       </v-card>
     </v-row>
-    <!-- Dialog update category -->
+    <!-- Dialog update status -->
     <v-dialog
       class="mb-15"
       v-model="updateStatusDialog"
@@ -143,16 +143,17 @@
         </v-card-title>
         <v-card-text>
           <v-container>
-            <v-row align="center" justify="center">
-              <v-btn
-                class="rounded-xl mt-10"
-                color="blue darken-4"
-                dark
-                v-bind="attrs"
-                v-on="on"
-              >
-                <v-icon>mdi-tag-plus</v-icon>
-              </v-btn>
+            <v-row>
+              <v-col cols="12">
+                <v-text-field
+                  v-model="libelle"
+                  label="Nom du statut"
+                  placeholder="Entrer le nom du statut"
+                  prepend-icon="mdi-tag"
+                  color="#fd2a65"
+                  required
+                ></v-text-field>
+              </v-col>
             </v-row>
           </v-container>
         </v-card-text>
@@ -166,12 +167,7 @@
           >
             Annuler
           </v-btn>
-          <v-btn
-            class="rounded-xl"
-            color="indigo"
-            text
-            @click="updateStatus()"
-          >
+          <v-btn class="rounded-xl" color="indigo" text @click="updateStatus()">
             Modifier
           </v-btn>
         </v-card-actions>
