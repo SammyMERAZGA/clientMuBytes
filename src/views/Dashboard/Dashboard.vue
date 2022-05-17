@@ -8,7 +8,7 @@
       />
     </v-row>
     <v-container>
-      <v-row>
+      <v-row align="center" justify="center">
         <v-col class="mt-10 ml-10">
           <v-card class="rounded-lg" elevation="10" width="500" height="350">
             <v-list-item>

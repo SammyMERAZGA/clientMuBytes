@@ -23,11 +23,11 @@ export default class Customers extends Vue {
   roles: Role[] = [
     {
       id: 1,
-      label: "Admin",
+      label: "Super-admin",
     },
     {
       id: 2,
-      label: "User",
+      label: "Admin",
     },
   ];
 

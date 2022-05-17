@@ -127,7 +127,7 @@
         </v-dialog>
       </v-col>
     </v-row>
-    <v-row align="center" justify="center">
+    <v-row class="ml-15 mr-15" align="center" justify="center">
       <v-card width="1500" class="rounded-xl mt-10" elevation="5">
         <v-data-table
           :headers="headersEstablishmentsTable"

@@ -1,25 +1,38 @@
 import Vue from "vue";
 import Component from "vue-class-component";
+import axios from "axios";
+import { Category } from "../../types/Category";
+import { Artwork } from '../../types/Artwork';
 
 @Component
 export default class Artworks extends Vue {
-  // Adding an Artwork
+  categories: Category[] = [];
+
+  overlay = false;
+
   addArtworkDialog = false;
-  calendarArtworkAdded = false;
+  // calendarArtworkAdded = false;
   calendarArtworkCreated = false;
-  calendarArtworkLoaned = false;
+  // calendarArtworkLoaned = false;
+
+  idArtwork = 0;
   name = "";
-  author = "";
   description = "";
-  dateAdded = "";
-  dateCreation = "";
-  dateOfLoan = "";
+  picture = "";
+  author = "";
+  // dateAdded = "";
+  artwork_Date = "";
+  // dateOfLoan = "";
+  to_Loan = false;
+  to_Expose = false;
+  belong_To = false;
+  artwork_Type_id = 0;
 
   // Editing an Artwork
   dialogArtwork = true;
-  calendarArtworkAdded2 = false;
+  // calendarArtworkAdded2 = false;
   calendarArtworkCreated2 = false;
-  calendarArtworkLoaned2 = false;
+  // calendarArtworkLoaned2 = false;
 
   // Snackbar
   snackbarAddArtwork = false;
@@ -28,8 +41,6 @@ export default class Artworks extends Vue {
 
   page = 1;
 
-  idArtwork = 0;
-
   rulesPicture = [
     (value: any) =>
       !value ||
@@ -37,7 +48,7 @@ export default class Artworks extends Vue {
       "La taille de l'image doit être inférieure à 2 Mo !",
   ];
 
-  status = ["Disponible", "En prêt", "Non-prêtable"];
+  // status = ["Disponible", "En prêt", "Non-prêtable"];
 
   artworks = [
     {
@@ -60,29 +71,38 @@ export default class Artworks extends Vue {
       description:
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium unde ducimus nihil dicta iusto ratione.",
       picture: "https://c.tenor.com/vM0BXi-C2BYAAAAC/goku-vegeta.gif",
-    },
-    {
-      id: 4,
-      name: "Méliodas & Ban",
-      description:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium unde ducimus nihil dicta iusto ratione.",
-      picture: "https://c.tenor.com/7ifKFj-rS3MAAAAC/meliodas-ban.gif",
-    },
-    {
-      id: 5,
-      name: "Light & L",
-      description:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium unde ducimus nihil dicta iusto ratione.",
-      picture:
-        "https://animesher.com/orig/1/149/1491/14918/animesher.com_yagami-light-deathnote-gif-1491888.gif",
-    },
-    {
-      id: 4,
-      name: "Tanjiro & Nezuko",
-      description:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium unde ducimus nihil dicta iusto ratione.",
-      picture:
-        "https://i.pinimg.com/originals/37/02/a2/3702a2540fd07aa72e0cc0c5ac4a072a.gif",
-    },
+    }
   ];
+
+  addArtwork(): void {
+    this.overlay = true;
+    axios
+      .post(`https://mubytes-api.herokuapp.com/artwork/create`, {
+        name: this.name,
+        description: this.description,
+        picture: this.picture,
+        author: this.author,
+        artwork_Date: this.artwork_Date,
+        to_Loan: this.to_Loan,
+        to_Expose: this.to_Expose,
+        belong_To: this.belong_To,
+        artwork_Type_id: this.artwork_Type_id,
+      })
+      .then(() => {
+        this.snackbarAddArtwork = true;
+        this.addArtworkDialog = false;
+        this.allArtworks();
+        this.overlay = false;
+      });
+  }
+
+  async allArtworks(): Promise<void> {
+    this.artworks = (
+      await axios.get(`https://mubytes-api.herokuapp.com/artwork/all`)
+    ).data as Artwork[];
+  }
+
+  mounted(): void {
+    this.allArtworks();
+  }
 }
