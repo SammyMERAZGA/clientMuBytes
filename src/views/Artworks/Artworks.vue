@@ -282,16 +282,16 @@
                   </template>
                   <span>Consulter l'historique</span>
                 </v-tooltip>
-                  <v-btn
-                    class="ml-10"
-                    icon
-                    large
-                    outlined
-                    color="#353E8D"
-                    @click="editArtwork(artwork)"
-                  >
-                    <v-icon color="#353E8D"> mdi-pencil </v-icon>
-                  </v-btn>
+                <v-btn
+                  class="ml-10"
+                  icon
+                  large
+                  outlined
+                  color="#353E8D"
+                  @click="editArtwork(artwork)"
+                >
+                  <v-icon color="#353E8D"> mdi-pencil </v-icon>
+                </v-btn>
                 <!-- Update Artwork Dialog -->
                 <v-dialog
                   class="mb-15"
@@ -505,7 +505,7 @@
                   large
                   outlined
                   color="#fd2a65"
-                  @click="snackbarDeleteArtwork = true"
+                  @click="deleteArtwork(artwork)"
                 >
                   <v-icon color="#fd2a65"> mdi-delete </v-icon>
                 </v-btn>

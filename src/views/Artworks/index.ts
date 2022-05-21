@@ -129,4 +129,13 @@ export default class Artworks extends Vue {
       });
   }
 
+  deleteArtwork(artwork: Artwork): void {
+    axios
+      .delete(`https://mubytes-api.herokuapp.com/artwork/delete/${artwork.id}`)
+      .then(() => {
+        this.snackbarDeleteArtwork = true;
+        this.allArtworks();
+      });
+  }
+
 }
