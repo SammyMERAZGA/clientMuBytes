@@ -8,8 +8,10 @@
       />
     </v-row>
     <v-container>
-      <v-row align="center" justify="center">
-        <v-col class="mt-10 ml-10">
+      <v-row class="mt-10">
+        <!-- COL 1 -->
+        <v-col align="center" justify="center" class="mt-10">
+          <!-- CARD TOP LEFT -->
           <v-card class="rounded-lg" elevation="10" width="500" height="350">
             <v-list-item>
               <v-list-item-content>
@@ -28,8 +30,9 @@
               ></apexchart>
             </v-row>
           </v-card>
+          <!-- CARD BOTTOM LEFT -->
           <v-card
-            class="rounded-lg mt-5"
+            class="rounded-lg mt-10"
             elevation="10"
             width="500"
             height="350"
@@ -52,7 +55,9 @@
             </v-row>
           </v-card>
         </v-col>
-        <v-col class="mt-10 ml-5">
+        <!-- COL 2 -->
+        <v-col align="center" justify="center" class="mt-10">
+          <!-- CARD TOP RIGHT -->
           <v-card class="rounded-lg" elevation="10" width="500" height="350">
             <v-list-item>
               <v-list-item-content>
@@ -71,8 +76,9 @@
               ></apexchart>
             </v-row>
           </v-card>
+          <!-- CARD BOTTOM RIGHT -->
           <v-card
-            class="rounded-lg mt-5"
+            class="rounded-lg mt-10"
             elevation="10"
             width="500"
             height="350"

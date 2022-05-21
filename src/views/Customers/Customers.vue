@@ -52,9 +52,9 @@
                 <v-row>
                   <v-col cols="12">
                     <v-text-field
-                      v-model="lastname"
-                      label="Nom de famille"
-                      placeholder="Entrer un nom de famille"
+                      v-model="firstname"
+                      label="Prénom"
+                      placeholder="Entrer un prénom"
                       prepend-icon="mdi-account-circle"
                       color="#fd2a65"
                       required
@@ -62,9 +62,9 @@
                   </v-col>
                   <v-col cols="12">
                     <v-text-field
-                      v-model="firstname"
-                      label="Prénom"
-                      placeholder="Entrer un prénom"
+                      v-model="lastname"
+                      label="Nom de famille"
+                      placeholder="Entrer un nom de famille"
                       prepend-icon="mdi-account-circle"
                       color="#fd2a65"
                       required
@@ -193,9 +193,9 @@
             <v-row>
               <v-col cols="12">
                 <v-text-field
-                  v-model="lastname"
-                  label="Nom de famille"
-                  placeholder="Entrer un nom de famille"
+                  v-model="firstname"
+                  label="Prénom"
+                  placeholder="Entrer un prénom"
                   prepend-icon="mdi-account-circle"
                   color="#fd2a65"
                   required
@@ -203,9 +203,9 @@
               </v-col>
               <v-col cols="12">
                 <v-text-field
-                  v-model="firstname"
-                  label="Prénom"
-                  placeholder="Entrer un prénom"
+                  v-model="lastname"
+                  label="Nom de famille"
+                  placeholder="Entrer un nom de famille"
                   prepend-icon="mdi-account-circle"
                   color="#fd2a65"
                   required

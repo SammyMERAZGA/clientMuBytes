@@ -44,11 +44,13 @@ export default class Login extends Vue {
         console.log("Login success ✅" + this.$store.state.isLog);
         console.log("😁 Lastname : " + this.$store.state.lastname);
         console.log("🥹 Firstname : " + this.$store.state.firstname);
-        console.log("🦁 Role_id : " + this.$store.state.role_id);
+        console.log("🦁 Role_id : " + this.$store.state.role_id)
+        localStorage.setItem("role_id", this.$store.state.role_id);
       })
       .catch((error) => {
         if (error.response.data.error) {
           this.snackbarErrorPassword = true;
+          this.overlay = false;
         }
       });
   }
