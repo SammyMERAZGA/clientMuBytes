@@ -7,10 +7,12 @@ import { Artwork } from '../../types/Artwork';
 @Component
 export default class Artworks extends Vue {
   categories: Category[] = [];
+  artworks: Artwork[] = [];
 
   overlay = false;
 
   addArtworkDialog = false;
+  updateArtworkDialog = false;
   // calendarArtworkAdded = false;
   calendarArtworkCreated = false;
   // calendarArtworkLoaned = false;
@@ -50,30 +52,6 @@ export default class Artworks extends Vue {
 
   // status = ["Disponible", "En prêt", "Non-prêtable"];
 
-  artworks = [
-    {
-      id: 1,
-      name: "Gon & Killua",
-      description:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium unde ducimus nihil dicta iusto ratione.",
-      picture: "https://24.media.tumblr.com/tumblr_m6tua7TFB81qfwde8o1_500.gif",
-    },
-    {
-      id: 2,
-      name: "Naruto & Sasuke",
-      description:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium unde ducimus nihil dicta iusto ratione.",
-      picture: "https://media0.giphy.com/media/lPX7ZMdAYbr3DZkAPd/200.gif",
-    },
-    {
-      id: 3,
-      name: "Son Goku & Vegeta",
-      description:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium unde ducimus nihil dicta iusto ratione.",
-      picture: "https://c.tenor.com/vM0BXi-C2BYAAAAC/goku-vegeta.gif",
-    }
-  ];
-
   addArtwork(): void {
     this.overlay = true;
     axios
@@ -102,7 +80,53 @@ export default class Artworks extends Vue {
     ).data as Artwork[];
   }
 
+  async allCategories(): Promise<void> {
+    this.categories = (
+      await axios.get(`https://mubytes-api.herokuapp.com/category/all`)
+    ).data as Category[];
+  }
+
   mounted(): void {
     this.allArtworks();
+    this.allCategories();
   }
+
+  editArtwork(artwork: Artwork): void {
+    this.name = artwork.name;
+    this.description = artwork.description;
+    this.picture = artwork.picture;
+    this.author = artwork.author;
+    this.artwork_Date = artwork.artwork_Date;
+    this.to_Loan = artwork.to_Loan;
+    this.to_Expose = artwork.to_Expose;
+    this.belong_To = artwork.belong_To;
+    this.artwork_Type_id = artwork.artwork_Type_id;
+    this.updateArtworkDialog = true;
+    this.idArtwork = artwork.id;
+  }
+
+  updateArtwork(): void {
+    axios
+      .post(
+        `https://mubytes-api.herokuapp.com/artwork/modify/${this.idArtwork}`,
+        {
+          name: this.name,
+          description: this.description,
+          picture: this.picture,
+          author: this.author,
+          artwork_Date: this.artwork_Date,
+          to_Loan: this.to_Loan,
+          to_Expose: this.to_Expose,
+          belong_To: this.belong_To,
+          artwork_Type_id: this.artwork_Type_id,
+        }
+      )
+      .then(() => {
+        this.snackbarUpdateArtwork = true;
+        this.updateArtworkDialog = false;
+        this.idArtwork = 0;
+        this.allArtworks();
+      });
+  }
+
 }
