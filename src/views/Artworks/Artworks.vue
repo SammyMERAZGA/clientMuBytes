@@ -59,6 +59,7 @@
                       prepend-icon="mdi-palette-advanced"
                       color="#fd2a65"
                       required
+                      clearable
                     ></v-text-field>
                   </v-col>
                   <v-col cols="12">
@@ -69,6 +70,7 @@
                       prepend-icon="mdi-account-school"
                       color="#fd2a65"
                       required
+                      clearable
                     ></v-text-field>
                   </v-col>
                   <!-- <v-col class="d-flex" cols="12">
@@ -88,6 +90,7 @@
                       color="#fd2a65"
                       prepend-icon="mdi-script-text-outline"
                       hint="Décrivez l'oeuvre de façon détaillée"
+                      clearable
                     ></v-textarea>
                   </v-col>
                   <v-col cols="12">
@@ -195,8 +198,6 @@
                         v-model="to_Loan"
                         label="Oeuvre loué"
                         color="#fd2a65"
-                        value="to_Loan"
-                        hide-details
                       ></v-checkbox>
                     </v-col>
                     <v-col cols="12" sm="4" md="4">
@@ -204,8 +205,6 @@
                         v-model="to_Expose"
                         label="Oeuvre exposée"
                         color="#fd2a65"
-                        value="to_Expose"
-                        hide-details
                       ></v-checkbox>
                     </v-col>
                     <v-col cols="12" sm="6" md="6">
@@ -213,8 +212,6 @@
                         v-model="belong_To"
                         label="Oeuvre appartenant à nous"
                         color="#fd2a65"
-                        value="belong_To"
-                        hide-details
                       ></v-checkbox>
                     </v-col>
                   </v-row>
