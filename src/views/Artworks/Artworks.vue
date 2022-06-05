@@ -242,10 +242,24 @@
       </v-col>
     </v-row>
     <!-- Artwork Card -->
+    <!-- Search field -->
+    <v-row justify="center" align="center">
+      <v-col cols="12" sm="6" class="mt-10">
+        <v-text-field
+          v-model="search"
+          label="Rechercher une oeuvre"
+          color="#fd2a65"
+          outlined
+          append-icon="mdi-magnify"
+          clearable
+        ></v-text-field>
+      </v-col>
+    </v-row>
+    <!-- End of Search field -->
     <v-row>
       <v-col cols="12" md="4" v-for="artwork in artworks" :key="artwork.id">
         <v-card
-          class="elevation-5 rounded-xl ml-10 mt-10"
+          class="elevation-5 rounded-xl ml-10 mt-5"
           height="400"
           width="400"
         >

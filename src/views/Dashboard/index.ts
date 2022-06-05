@@ -9,7 +9,7 @@ export default class Dashboard extends Vue {
   nbArtworksByCategory = [90, 40, 60];
 
   artworkByCategoryOptions = {
-    labels: ["Ordinateurs", "Pixels Arts", "Tableaux"],
+    labels: ["Ordis", "Pixels", "Tableaux"],
     colors: ["#353E8D", "#fd2a65", "#fcd5dc"],
   };
 
