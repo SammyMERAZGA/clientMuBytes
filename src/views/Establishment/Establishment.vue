@@ -41,13 +41,24 @@
             </v-row>
           </template>
           <v-card class="rounded-xl">
-            <v-card-title>
+            <v-toolbar id="toolbar" class="mb-5" dark>
               <v-row align="center" justify="center">
-                <span class="text-h5 indigo--text mt-5"
-                  >Ajouter un établissement</span
-                >
+                <v-toolbar-title>
+                  <span>
+                    <v-icon>mdi-office-building-outline</v-icon>
+                    Ajouter un établissement</span
+                  >
+                </v-toolbar-title>
               </v-row>
-            </v-card-title>
+            </v-toolbar>
+            <v-row align="center" justify="center">
+              <v-img
+                class="mt-3"
+                src="../../assets/images/Storyset/establishment.png"
+                height="150"
+                max-width="150"
+              ></v-img>
+            </v-row>
             <v-card-text>
               <v-container>
                 <v-row>
@@ -178,13 +189,16 @@
       max-width="600px"
     >
       <v-card class="rounded-xl">
-        <v-card-title>
+        <v-toolbar id="toolbar" class="mb-5" dark>
           <v-row align="center" justify="center">
-            <span class="text-h5 indigo--text mt-5"
-              >Modifier un établissement</span
-            >
+            <v-toolbar-title>
+              <span>
+                <v-icon>mdi-office-building-outline</v-icon>
+                Modifier un établissement</span
+              >
+            </v-toolbar-title>
           </v-row>
-        </v-card-title>
+        </v-toolbar>
         <v-card-text>
           <v-container>
             <v-row>

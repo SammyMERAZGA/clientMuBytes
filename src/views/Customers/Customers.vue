@@ -40,13 +40,16 @@
             </v-row>
           </template>
           <v-card class="rounded-xl">
-            <v-card-title>
+            <v-toolbar id="toolbar" class="mb-5" dark>
               <v-row align="center" justify="center">
-                <span class="text-h5 indigo--text mt-5"
-                  >Ajouter un utilisateur</span
-                >
+                <v-toolbar-title>
+                  <span>
+                    <v-icon>mdi-account-plus</v-icon>
+                    Ajouter un utilisateur</span
+                  >
+                </v-toolbar-title>
               </v-row>
-            </v-card-title>
+            </v-toolbar>
             <v-card-text>
               <v-container>
                 <v-row>
@@ -181,13 +184,16 @@
       max-width="600px"
     >
       <v-card class="rounded-xl">
-        <v-card-title>
+        <v-toolbar id="toolbar" class="mb-5" dark>
           <v-row align="center" justify="center">
-            <span class="text-h5 indigo--text mt-5"
-              >Modifier un utilisateur</span
-            >
+            <v-toolbar-title>
+              <span>
+                <v-icon>mdi-account-switch</v-icon>
+                Modifier un utilisateur</span
+              >
+            </v-toolbar-title>
           </v-row>
-        </v-card-title>
+        </v-toolbar>
         <v-card-text>
           <v-container>
             <v-row>

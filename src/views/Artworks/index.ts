@@ -138,4 +138,17 @@ export default class Artworks extends Vue {
       });
   }
 
+  handleImage(e: any): void {
+    const file = e.target.files[0];
+    this.createBase64Image(file);
+  }
+
+  createBase64Image(file: File): void {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+      this.picture = reader.result as string;
+    };
+  }
+
 }

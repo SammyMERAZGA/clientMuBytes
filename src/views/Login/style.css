@@ -15,3 +15,7 @@
   -webkit-text-fill-color: transparent;
   -moz-text-fill-color: transparent;
 }
+
+#toolbar {
+  background: linear-gradient(70deg, #122c54 42%, #fd2a65 100%);
+}

@@ -63,14 +63,115 @@
                         Vous n'avez pas de compte ? Contactez un administrateur
                         pour qu'il vous crée un compte.
                       </h3>
-                      <v-btn
-                        class="rounded-xl mt-15"
-                        tile
-                        outlined
-                        dark
-                        @click="snackbarContact = true"
-                        >Contact</v-btn
+                      <v-dialog
+                        class="mb-15"
+                        v-model="contactDialog"
+                        persistent
+                        max-width="600px"
                       >
+                        <template v-slot:activator="{ on, attrs }">
+                          <v-row align="center" justify="center">
+                            <v-btn
+                              class="rounded-xl mt-15"
+                              tile
+                              outlined
+                              dark
+                              v-bind="attrs"
+                              v-on="on"
+                              @click="contactDialog = true"
+                              >Contact</v-btn
+                            >
+                          </v-row>
+                        </template>
+                        <v-card class="rounded-xl">
+                          <v-toolbar id="toolbar" class="mb-5" dark>
+                            <v-row align="center" justify="center">
+                              <v-toolbar-title>
+                                <span>
+                                  <v-icon>mdi-shield-crown-outline</v-icon>
+                                  Contacter un administrateur</span
+                                >
+                              </v-toolbar-title>
+                            </v-row>
+                          </v-toolbar>
+                          <v-row align="center" justify="center">
+                            <v-img
+                              class="mb-5"
+                              src="../../assets/images/Storyset/admin.png"
+                              height="200"
+                              max-width="200"
+                            ></v-img>
+                          </v-row>
+                          <v-card-text>
+                            <v-container>
+                              <v-row align="center" justify="center">
+                                <v-col cols="5">
+                                  <v-text-field
+                                    v-model="firstname"
+                                    label="Prénom"
+                                    placeholder="Entrer votre prénom"
+                                    prepend-icon="mdi-account-circle"
+                                    color="#fd2a65"
+                                    required
+                                  ></v-text-field>
+                                </v-col>
+                                <v-col cols="5">
+                                  <v-text-field
+                                    v-model="lastname"
+                                    label="Nom de famille"
+                                    placeholder="Entrer votre nom"
+                                    prepend-icon="mdi-home-account"
+                                    color="#fd2a65"
+                                    required
+                                  ></v-text-field>
+                                </v-col>
+                              </v-row>
+                              <v-col cols="12">
+                                <v-text-field
+                                  v-model="emailContact"
+                                  label="Adresse e-mail"
+                                  placeholder="Entrer votre adresse e-mail"
+                                  prepend-icon="mdi-email"
+                                  color="#fd2a65"
+                                  required
+                                ></v-text-field>
+                              </v-col>
+                              <v-row align="center" justify="center">
+                                <v-col class="d-flex" cols="12" sm="6" md="8">
+                                  <v-select
+                                    v-model="contactReason"
+                                    :items="reasons"
+                                    item-text="libelle"
+                                    item-value="id"
+                                    label="Motif de contact"
+                                    prepend-icon="mdi-format-list-bulleted-square"
+                                    color="#fd2a65"
+                                  ></v-select>
+                                </v-col>
+                              </v-row>
+                            </v-container>
+                          </v-card-text>
+                          <v-card-actions>
+                            <v-spacer></v-spacer>
+                            <v-btn
+                              class="rounded-xl"
+                              color="#fd2a65"
+                              text
+                              @click="contactDialog = false"
+                            >
+                              Annuler
+                            </v-btn>
+                            <v-btn
+                              class="rounded-xl"
+                              color="#122c54"
+                              text
+                              @click="contact()"
+                            >
+                              Envoyer
+                            </v-btn>
+                          </v-card-actions>
+                        </v-card>
+                      </v-dialog>
                     </v-row>
                   </div>
                 </v-card-text>

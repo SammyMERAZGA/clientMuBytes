@@ -41,13 +41,23 @@
             </v-row>
           </template>
           <v-card class="rounded-xl">
-            <v-card-title>
+            <v-toolbar id="toolbar" class="mb-5" dark>
               <v-row align="center" justify="center">
-                <span class="text-h5 indigo--text mt-5"
-                  >Ajouter une catégorie</span
-                >
+                <v-toolbar-title>
+                  <span>
+                    <v-icon>mdi-plus-circle-outline</v-icon>
+                    Ajouter une catégorie</span
+                  >
+                </v-toolbar-title>
               </v-row>
-            </v-card-title>
+            </v-toolbar>
+            <v-row align="center" justify="center">
+              <v-img
+                src="../../assets/images/Storyset/addCategory.png"
+                height="200"
+                max-width="150"
+              ></v-img>
+            </v-row>
             <v-card-text>
               <v-container>
                 <v-row>
@@ -68,7 +78,7 @@
               <v-spacer></v-spacer>
               <v-btn
                 class="rounded-xl"
-                color="red"
+                color="#fd2a65"
                 text
                 @click="addCategoryDialog = false"
               >
@@ -76,7 +86,7 @@
               </v-btn>
               <v-btn
                 class="rounded-xl"
-                color="indigo"
+                color="#122c54"
                 text
                 @click="addCategory()"
               >
@@ -138,13 +148,24 @@
       max-width="600px"
     >
       <v-card class="rounded-xl">
-        <v-card-title>
+        <v-toolbar id="toolbar" class="mb-5" dark>
           <v-row align="center" justify="center">
-            <span class="text-h5 indigo--text mt-5"
-              >Modifier une catégorie</span
-            >
+            <v-toolbar-title>
+              <span>
+                <v-icon>mdi-pencil-circle-outline</v-icon>
+                Modifier une catégorie</span
+              >
+            </v-toolbar-title>
           </v-row>
-        </v-card-title>
+        </v-toolbar>
+        <v-row align="center" justify="center">
+          <v-img
+            class="mt-5 mb-2"
+            src="../../assets/images/Storyset/updateCategory.png"
+            height="180"
+            max-width="200"
+          ></v-img>
+        </v-row>
         <v-card-text>
           <v-container>
             <v-row>

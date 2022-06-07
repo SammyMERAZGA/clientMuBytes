@@ -13,6 +13,19 @@ export default class Login extends Vue {
   email = "";
   password = "";
 
+  // Contact
+  contactDialog = false;
+  firstname = "";
+  lastname = "";
+  emailContact = "";
+  contactReason = "";
+
+  reasons = [
+    { id: 1, libelle: "Mot de passe oublié" },
+    { id: 2, libelle: "Création de compte" },
+    { id: 3, libelle: "Autre" },
+  ];
+
   login(): void {
     this.overlay = true;
     axios
@@ -39,12 +52,12 @@ export default class Login extends Vue {
           this.$store.commit("superAdmin", { val: true });
         } else {
           this.$store.commit("superAdmin", { val: false });
-        };
+        }
         console.log("🚨" + this.$store.state.isSuperAdmin);
         console.log("Login success ✅" + this.$store.state.isLog);
         console.log("😁 Lastname : " + this.$store.state.lastname);
         console.log("🥹 Firstname : " + this.$store.state.firstname);
-        console.log("🦁 Role_id : " + this.$store.state.role_id)
+        console.log("🦁 Role_id : " + this.$store.state.role_id);
         localStorage.setItem("role_id", this.$store.state.role_id);
       })
       .catch((error) => {
@@ -53,5 +66,10 @@ export default class Login extends Vue {
           this.overlay = false;
         }
       });
+  }
+
+  contact(): void {
+    this.snackbarContact = true;
+    this.contactDialog = false;
   }
 }

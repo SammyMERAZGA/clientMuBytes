@@ -41,13 +41,16 @@
             </v-btn>
           </template>
           <v-card class="rounded-xl">
-            <v-card-title>
+            <v-toolbar id="toolbar" class="mb-5" dark>
               <v-row align="center" justify="center">
-                <span class="text-h5 indigo--text mt-5"
-                  >Ajouter une oeuvre</span
-                >
+                <v-toolbar-title>
+                  <span>
+                    <v-icon>mdi-image-plus</v-icon>
+                    Ajouter une oeuvre</span
+                  >
+                </v-toolbar-title>
               </v-row>
-            </v-card-title>
+            </v-toolbar>
             <v-card-text>
               <v-container>
                 <v-row>
@@ -94,16 +97,23 @@
                     ></v-textarea>
                   </v-col>
                   <v-col cols="12">
-                    <v-file-input
+                    <label>Image de l'oeuvre :</label><br />
+                    <input
+                      class="mt-3"
+                      @change="handleImage"
+                      type="file"
+                      accept="image/*"
+                    />
+                    <!-- <v-file-input
+                      v-model="picture"
                       class="mr-5"
                       :rules="rulesPicture"
                       accept="image/png, image/jpeg, image/bmp"
                       placeholder="Entrer l'image de l'oeuvre"
                       prepend-icon="mdi-camera"
                       label="Image de l'oeuvre"
-                      v-model="picture"
                       color="#fd2a65"
-                    ></v-file-input>
+                    ></v-file-input> -->
                   </v-col>
                   <v-row align="center" justify="center" class="mt-2">
                     <!-- <v-col cols="12" sm="6" md="5">
@@ -311,13 +321,16 @@
                   max-width="600px"
                 >
                   <v-card class="rounded-xl">
-                    <v-card-title>
+                    <v-toolbar id="toolbar" class="mb-5" dark>
                       <v-row align="center" justify="center">
-                        <span class="text-h5 indigo--text mt-5"
-                          >Modifier une oeuvre</span
-                        >
+                        <v-toolbar-title>
+                          <span>
+                            <v-icon>mdi-pencil-box-multiple-outline</v-icon>
+                            Modifier une oeuvre</span
+                          >
+                        </v-toolbar-title>
                       </v-row>
-                    </v-card-title>
+                    </v-toolbar>
                     <v-card-text>
                       <v-container>
                         <v-row>
@@ -359,7 +372,14 @@
                             ></v-textarea>
                           </v-col>
                           <v-col cols="12">
-                            <v-file-input
+                            <label>Image de l'oeuvre :</label><br />
+                            <input
+                              class="mt-3"
+                              @change="handleImage"
+                              type="file"
+                              accept="image/*"
+                            />
+                            <!-- <v-file-input
                               class="mr-5"
                               :rules="rulesPicture"
                               accept="image/png, image/jpeg, image/bmp"
@@ -368,7 +388,7 @@
                               label="Image de l'oeuvre"
                               v-model="picture"
                               color="#fd2a65"
-                            ></v-file-input>
+                            ></v-file-input> -->
                           </v-col>
                           <v-row align="center" justify="center" class="mt-2">
                             <!-- <v-col cols="12" sm="6" md="5">
