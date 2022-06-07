@@ -30,6 +30,9 @@ export default class Artworks extends Vue {
   belong_To = false;
   artwork_Type_id = 0;
 
+  // Contient le base64 du champs file du formulaire
+  base64 = '';
+
   // Editing an Artwork
   dialogArtwork = true;
   // calendarArtworkAdded2 = false;
@@ -52,13 +55,35 @@ export default class Artworks extends Vue {
 
   // status = ["Disponible", "En prêt", "Non-prêtable"];
 
-  addArtwork(): void {
+    async getBase64(file: File): Promise<any>{
+        var that = this;
+        try{
+            var reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = async function () {
+                console.log(reader.result);
+                that.base64 = reader.result;
+                //return reader.result;
+            };
+            reader.onerror = function (error) {
+                console.log('Error: ', error);
+            };
+
+            return reader;
+        }catch (e) {
+            console.log(e);
+        }
+    }
+
+  async addArtwork(): Promise<void> {
     this.overlay = true;
+
+    await this.getBase64(this.picture);
     axios
       .post(`https://mubytes-api.herokuapp.com/artwork/create`, {
         name: this.name,
         description: this.description,
-        picture: this.picture,
+        picture: this.picture, //@todo: remplacer par this.base64
         author: this.author,
         artwork_Date: this.artwork_Date,
         to_Loan: this.to_Loan,
