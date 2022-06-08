@@ -2,7 +2,7 @@ import Vue from "vue";
 import Component from "vue-class-component";
 import axios from "axios";
 import { Category } from "../../types/Category";
-import { Artwork } from '../../types/Artwork';
+import { Artwork } from "../../types/Artwork";
 
 @Component
 export default class Artworks extends Vue {
@@ -49,8 +49,6 @@ export default class Artworks extends Vue {
       value.size < 2000000 ||
       "La taille de l'image doit être inférieure à 2 Mo !",
   ];
-
-  // status = ["Disponible", "En prêt", "Non-prêtable"];
 
   addArtwork(): void {
     this.overlay = true;
@@ -150,5 +148,4 @@ export default class Artworks extends Vue {
       this.picture = reader.result as string;
     };
   }
-
 }

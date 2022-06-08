@@ -169,6 +169,7 @@
                     </v-col>
                     <v-col class="d-flex" cols="12" sm="6" md="5">
                       <v-select
+                        v-model="artwork_Type_id"
                         :items="categories"
                         item-text="libelle"
                         item-value="id"

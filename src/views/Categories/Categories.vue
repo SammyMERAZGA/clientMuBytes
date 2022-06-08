@@ -40,7 +40,7 @@
               </v-btn>
             </v-row>
           </template>
-          <v-card class="rounded-xl">
+          <v-card class="rounded-xl non-scrollable">
             <v-toolbar id="toolbar" class="mb-5" dark>
               <v-row align="center" justify="center">
                 <v-toolbar-title>
@@ -147,7 +147,7 @@
       persistent
       max-width="600px"
     >
-      <v-card class="rounded-xl">
+      <v-card class="rounded-xl non-scrollable">
         <v-toolbar id="toolbar" class="mb-5" dark>
           <v-row align="center" justify="center">
             <v-toolbar-title>
