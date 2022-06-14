@@ -246,7 +246,14 @@ export default class Artworks extends Vue {
   }
 
   addBiliography(): void{
-
+      axios.put(
+          `https://mubytes-api.herokuapp.com/bibliography/create`,
+            this.getBibliographieData()
+      ).then(() => {
+        this.emptyBibliographieData();
+        this.fillBibliographieItems(this.idArtwork);
+        this.closeAddBibliographyDialog();
+      })
   }
 
   editBibliography(item: Bibliography): void{
@@ -260,15 +267,31 @@ export default class Artworks extends Vue {
       this.updateBibliographyDialog = false;
   }
 
+  closeAddBibliographyDialog(): void{
+      this.addBibliographyDialog = false;
+  }
+
   updateBibliography(): void{
-      axios.post(`https://mubytes-api.herokuapp.com/bibliography/modify/${this.bibligraphieId}`, {
-          libelle:      this.bibliographieLibelle,
-          description:  this.bibliographieDescription,
-          artworkId:    this.idArtwork
-      }).then(() => {
+      axios.post(
+          `https://mubytes-api.herokuapp.com/bibliography/modify/${this.bibligraphieId}`,
+          this.getBibliographieData()
+      ).then(() => {
           this.fillBibliographieItems(this.idArtwork);
           this.closeUpdateBlibliographyDialog()
+          this.emptyBibliographieData()
       });
   };
 
+  emptyBibliographieData(): void{
+      this.bibliographieDescription = '';
+      this.bibliographieLibelle = '';
+  }
+
+  getBibliographieData(): object {
+    return {
+      libelle: this.bibliographieLibelle,
+      description: this.bibliographieDescription,
+      artwork_id: this.idArtwork
+    }
+  }
 }

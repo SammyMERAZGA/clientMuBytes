@@ -461,7 +461,7 @@
                                 <v-container>
                                   <v-col cols="12">
                                     <v-text-field
-                                      v-model="libelle"
+                                      v-model="bibliographieLibelle"
                                       label="Libellé"
                                       clearable
                                       placeholder="Entrer le libellé de la bibliographie"
@@ -470,7 +470,7 @@
                                   </v-col>
                                   <v-col cols="12">
                                     <v-textarea
-                                      v-model="description"
+                                      v-model="bibliographieDescription"
                                       filled
                                       clearable
                                       label="Description"
@@ -486,11 +486,11 @@
                                   class="rounded-xl"
                                   color="#fd2a65"
                                   text
-                                  @click="addBibliographyDialog = false"
+                                  @click="closeAddBibliographyDialog()"
                                 >
                                   Annuler
                                 </v-btn>
-                                <v-btn class="rounded-xl" color="#353e8d" text>
+                                <v-btn @click="addBiliography()" class="rounded-xl" color="#353e8d" text>
                                   Ajouter
                                 </v-btn>
                               </v-card-actions>
