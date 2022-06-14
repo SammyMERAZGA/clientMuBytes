@@ -21,7 +21,7 @@
   width: 100%;
   height: 100%;
   border-bottom-right-radius: 20px;
-  background: #353E8D;
+  background: #353e8d;
 }
 .border b:nth-child(2) {
   position: absolute;
@@ -39,7 +39,7 @@
   width: 100%;
   height: 100%;
   border-top-right-radius: 20px;
-  background: #353E8D;
+  background: #353e8d;
 }
 .border b:nth-child(1),
 .border b:nth-child(2) {
@@ -47,7 +47,7 @@
 }
 
 #sidebar {
-  background: #353E8D
+  background: #353e8d;
 }
 
 #logout {

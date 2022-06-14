@@ -1,18 +1,27 @@
 import Vue from "vue";
-import Component from "vue-class-component";
 import axios from "axios";
+import Component from "vue-class-component";
 import { Category } from "../../types/Category";
 import { Artwork } from "../../types/Artwork";
+import { Bibliography } from "../../types/Bibliography";
+import { Status } from "../../types/Status";
+import { Establishment } from "../../types/Establishment";
 
 @Component
 export default class Artworks extends Vue {
   categories: Category[] = [];
   artworks: Artwork[] = [];
+  bibliographies: Bibliography[] = [];
+  status: Status[] = [];
+  establishments: Establishment[] = [];
 
   overlay = false;
 
   addArtworkDialog = false;
   updateArtworkDialog = false;
+  dialogBibliography = false;
+  addBibliographyDialog = false;
+  historyArtworkDialog = false;
   // calendarArtworkAdded = false;
   calendarArtworkCreated = false;
   // calendarArtworkLoaned = false;
@@ -25,10 +34,20 @@ export default class Artworks extends Vue {
   // dateAdded = "";
   artwork_Date = "";
   // dateOfLoan = "";
-  to_Loan = false;
-  to_Expose = false;
+  // to_Loan = false;
+  // to_Expose = false;
+  establishement_id = 0;
   belong_To = false;
   artwork_Type_id = 0;
+  statut_id = 0;
+
+  convertBelongTo(): number {
+    if (this.belong_To === false) {
+      return 1;
+    } else {
+      return 0;
+    }
+  }
 
   // Editing an Artwork
   dialogArtwork = true;
@@ -40,14 +59,25 @@ export default class Artworks extends Vue {
   snackbarAddArtwork = false;
   snackbarUpdateArtwork = false;
   snackbarDeleteArtwork = false;
-
-  page = 1;
+  snackbarUpdateBibliography = false;
+  snackbarDeleteBibliography = false;
 
   rulesPicture = [
     (value: any) =>
       !value ||
       value.size < 2000000 ||
       "La taille de l'image doit être inférieure à 2 Mo !",
+  ];
+
+  page = 1;
+  pageCount = 0;
+  itemsPerPage = 3;
+
+  headersBibliographyTable = [
+    { text: "Libellé", value: "libelle", align: "start" },
+    { text: "Description", value: "description" },
+    { text: "Modifier", value: "update", sortable: false },
+    { text: "Supprimer", value: "delete", sortable: false },
   ];
 
   addArtwork(): void {
@@ -59,9 +89,9 @@ export default class Artworks extends Vue {
         picture: this.picture,
         author: this.author,
         artwork_Date: this.artwork_Date,
-        to_Loan: this.to_Loan,
-        to_Expose: this.to_Expose,
-        belong_To: this.belong_To,
+        statut_id: this.statut_id,
+        establishement_id: this.establishement_id,
+        belong_To: this.convertBelongTo(),
         artwork_Type_id: this.artwork_Type_id,
       })
       .then(() => {
@@ -73,9 +103,11 @@ export default class Artworks extends Vue {
   }
 
   async allArtworks(): Promise<void> {
+    this.overlay = true;
     this.artworks = (
       await axios.get(`https://mubytes-api.herokuapp.com/artwork/all`)
     ).data as Artwork[];
+    this.overlay = false;
   }
 
   async allCategories(): Promise<void> {
@@ -84,9 +116,31 @@ export default class Artworks extends Vue {
     ).data as Category[];
   }
 
+  async allStatus(): Promise<void> {
+    this.status = (
+      await axios.get(`https://mubytes-api.herokuapp.com/status/all`)
+    ).data as Status[];
+  }
+
+  async allEstablishments(): Promise<void> {
+    this.establishments = (
+      await axios.get(`https://mubytes-api.herokuapp.com/establishment/all`)
+    ).data as Establishment[];
+  }
+
+  // async allBibliographies(artwork: Artwork): Promise<void> {
+  //   this.bibliographies = (
+  //     await axios.get(
+  //       `https://mubytes-api.herokuapp.com/bibliography/${artwork.id}`
+  //     )
+  //   ).data as Bibliography[];
+  // }
+
   mounted(): void {
     this.allArtworks();
     this.allCategories();
+    this.allStatus();
+    this.allEstablishments();
   }
 
   editArtwork(artwork: Artwork): void {
@@ -95,12 +149,20 @@ export default class Artworks extends Vue {
     this.picture = artwork.picture;
     this.author = artwork.author;
     this.artwork_Date = artwork.artwork_Date;
-    this.to_Loan = artwork.to_Loan;
-    this.to_Expose = artwork.to_Expose;
+    this.statut_id = artwork.statut_id;
+    this.establishement_id = artwork.establishement_id;
     this.belong_To = artwork.belong_To;
     this.artwork_Type_id = artwork.artwork_Type_id;
     this.updateArtworkDialog = true;
     this.idArtwork = artwork.id;
+  }
+
+  openBibliography(artwork: Artwork): void {
+    this.dialogBibliography = true;
+  }
+
+  openHistoryArtwork(artwork: Artwork): void {
+    this.historyArtworkDialog = true;
   }
 
   updateArtwork(): void {
@@ -113,8 +175,7 @@ export default class Artworks extends Vue {
           picture: this.picture,
           author: this.author,
           artwork_Date: this.artwork_Date,
-          to_Loan: this.to_Loan,
-          to_Expose: this.to_Expose,
+          establishement_id: this.establishement_id,
           belong_To: this.belong_To,
           artwork_Type_id: this.artwork_Type_id,
         }
@@ -133,6 +194,16 @@ export default class Artworks extends Vue {
       .then(() => {
         this.snackbarDeleteArtwork = true;
         this.allArtworks();
+      });
+  }
+
+  deleteBibliography(bibliography: Bibliography): void {
+    axios
+      .delete(
+        `https://mubytes-api.herokuapp.com/bibliography/delete/${bibliography.id}`
+      )
+      .then(() => {
+        this.snackbarDeleteBibliography = true;
       });
   }
 

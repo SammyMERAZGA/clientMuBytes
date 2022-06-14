@@ -1,12 +1,15 @@
 import Vue from "vue";
 import Component from "vue-class-component";
 import axios from "axios";
+import { ArtworkByCategory } from "../../types/charts/ArtworkByCategory";
 
 @Component
 export default class Dashboard extends Vue {
   // CHART 1
 
   nbArtworksByCategory = [90, 40, 60];
+
+  // nbArtworksByCategory: any = [];
 
   artworkByCategoryOptions = {
     labels: ["Ordis", "Pixels", "Tableaux"],
@@ -76,4 +79,30 @@ export default class Dashboard extends Vue {
       horizontalAlign: "left",
     },
   };
+
+  // async getArtworkByCategory(): Promise<void> {
+  //   this.nbArtworksByCategory = await axios
+  //     .get("https://mubytes-api.herokuapp.com/dashboard/nbArtworkByCategory")
+  //     .then((response) => {
+  //       console.log("🇩🇿");
+  //       console.log(
+  //         "🐯🐯🐯🐯" +
+  //           response.data.map(
+  //             (item: ArtworkByCategory) => item.nbArtworksByCategory
+  //           )
+  //       );
+  //       this.nbArtworksByCategory = response.data.map(
+  //         (item: ArtworkByCategory) => item.nbArtworksByCategory
+  //       );
+  //     });
+  //   console.log("😂😂" + this.nbArtworksByCategory);
+  // }
+
+  // async loadData(): Promise<void> {
+  //   this.getArtworkByCategory();
+  // }
+
+  // async mounted(): Promise<void> {
+  //   await this.loadData();
+  // }
 }

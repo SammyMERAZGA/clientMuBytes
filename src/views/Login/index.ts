@@ -35,10 +35,10 @@ export default class Login extends Vue {
       })
       .then((response) => {
         if (response.data.success) {
+          this.$store.commit("nowLog", { val: true });
           this.$router.push("/dashboard");
           this.overlay = false;
         }
-        this.$store.commit("nowLog", { val: true });
         this.$store.commit("lastnameCustomer", {
           val: response.data.user.lastname,
         });

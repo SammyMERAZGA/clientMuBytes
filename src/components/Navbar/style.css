@@ -13,4 +13,6 @@
   -moz-text-fill-color: transparent;
 }
 
-/* 1262px */
+.borderMobile {
+  border-left: 4px solid #fd2a65;
+}

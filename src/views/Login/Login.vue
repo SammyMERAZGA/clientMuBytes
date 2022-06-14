@@ -7,7 +7,7 @@
         size="64"
       ></v-progress-circular>
     </v-overlay>
-    <v-row align="center" justify="center">
+    <v-row class="mt-10" align="center" justify="center">
       <img
         src="../../assets/images/logo/mubytesText.png"
         alt="Mubytes"

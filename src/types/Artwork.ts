@@ -5,8 +5,8 @@ export type Artwork = {
   picture: string;
   author: string;
   artwork_Date: string;
-  to_Loan: boolean;
-  to_Expose: boolean;
+  establishement_id: number;
   belong_To: boolean;
   artwork_Type_id: number;
+  statut_id: number;
 };

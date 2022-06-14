@@ -85,11 +85,9 @@
           >
             <v-list-item>
               <v-list-item-content>
-                <div class="overline text-center indigo--text">
-                  Statistiques globales
-                </div>
+                <div class="overline indigo--text">Statistiques globales</div>
                 <div><v-divider></v-divider></div>
-                <div class="pa-15">
+                <div class="pa-15 align">
                   <h3 class="indigo--text mb-5">
                     Nombre d'oeuvres enregistrées : 23
                   </h3>

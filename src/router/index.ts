@@ -18,28 +18,56 @@ const routes: Array<RouteConfig> = [
     path: "/dashboard",
     name: "Dashboard",
     component: Dashboard,
+    beforeEnter(to, from, next) {
+      if (store.state.isLog === true) {
+        next();
+      } else {
+        next("/:pathMatch(.*)*");
+      }
+    },
   },
   {
     path: "/artworks",
     name: "Artworks",
     component: Artworks,
+    beforeEnter(to, from, next) {
+      if (store.state.isLog === true) {
+        next();
+      } else {
+        next("/:pathMatch(.*)*");
+      }
+    },
   },
   {
     path: "/categories",
     name: "Categories",
     component: Categories,
+    beforeEnter(to, from, next) {
+      if (store.state.isLog === true) {
+        next();
+      } else {
+        next("/:pathMatch(.*)*");
+      }
+    },
   },
   {
     path: "/status",
     name: "Status",
     component: Status,
+    beforeEnter(to, from, next) {
+      if (store.state.isLog === true) {
+        next();
+      } else {
+        next("/:pathMatch(.*)*");
+      }
+    },
   },
   {
     path: "/customers",
     name: "Customers",
     component: Customers,
     beforeEnter(to, from, next) {
-      if (store.state.isSuperAdmin === true) {
+      if (store.state.isLog === true && store.state.isSuperAdmin === true) {
         next();
       } else {
         next("/:pathMatch(.*)*");
@@ -50,6 +78,13 @@ const routes: Array<RouteConfig> = [
     path: "/establishments",
     name: "Establishments",
     component: Establishments,
+    beforeEnter(to, from, next) {
+      if (store.state.isLog === true) {
+        next();
+      } else {
+        next("/:pathMatch(.*)*");
+      }
+    },
   },
   {
     path: "/",
@@ -57,10 +92,23 @@ const routes: Array<RouteConfig> = [
     component: Login,
   },
   {
-    path: "/history",
+    path: "/history/:id",
     name: "HistoryArtwork",
     component: HistoryArtwork,
   },
+  // {
+  //   path: "/history/:id",
+  //   name: "HistoryArtwork",
+  //   component: HistoryArtwork,
+  //   props: true,
+  //   beforeEnter(to, from, next) {
+  //     if (store.state.isLog === true) {
+  //       next();
+  //     } else {
+  //       next("/:pathMatch(.*)*");
+  //     }
+  //   },
+  // },
   {
     path: "/:pathMatch(.*)*",
     name: "Error",
@@ -69,6 +117,8 @@ const routes: Array<RouteConfig> = [
 ];
 
 const router = new VueRouter({
+  mode: "history",
+  base: process.env.BASE_URL,
   routes,
 });
 
