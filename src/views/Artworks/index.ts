@@ -73,12 +73,16 @@ export default class Artworks extends Vue {
   pageCount = 0;
   itemsPerPage = 3;
 
+  // ========== B I B L I O G R A P H I E ========== //
   headersBibliographyTable = [
     { text: "Libellé", value: "libelle", align: "start" },
     { text: "Description", value: "description" },
     { text: "Modifier", value: "update", sortable: false },
     { text: "Supprimer", value: "delete", sortable: false },
   ];
+
+  bibliographieItems: Bibliography[] = [];
+  bibliographieArtworkId = 0; // L'id de l'artwork sélectionné
 
   addArtwork(): void {
     this.overlay = true;
@@ -157,10 +161,6 @@ export default class Artworks extends Vue {
     this.idArtwork = artwork.id;
   }
 
-  openBibliography(artwork: Artwork): void {
-    this.dialogBibliography = true;
-  }
-
   openHistoryArtwork(artwork: Artwork): void {
     this.historyArtworkDialog = true;
   }
@@ -197,16 +197,6 @@ export default class Artworks extends Vue {
       });
   }
 
-  deleteBibliography(bibliography: Bibliography): void {
-    axios
-      .delete(
-        `https://mubytes-api.herokuapp.com/bibliography/delete/${bibliography.id}`
-      )
-      .then(() => {
-        this.snackbarDeleteBibliography = true;
-      });
-  }
-
   handleImage(e: any): void {
     const file = e.target.files[0];
     this.createBase64Image(file);
@@ -219,4 +209,43 @@ export default class Artworks extends Vue {
       this.picture = reader.result as string;
     };
   }
+
+  // ========== B I B L I O G R A P H I E ========== //
+  openBibliography(artwork: Artwork): void {
+    this.dialogBibliography = true;
+    this.bibliographieArtworkId = artwork.id;
+    this.fillBibliographieItems(artwork.id);
+    console.log(this.bibliographieItems);
+  }
+
+  closeBlibliographyDialog(): void{
+    this.dialogBibliography = false;
+    this.bibliographieItems = [];
+    this.bibliographieArtworkId = 0;
+  }
+
+  async fillBibliographieItems(artworkId: number): Promise<void> {
+      this.bibliographieItems = (
+          await axios.get(`https://mubytes-api.herokuapp.com/bibliography/artwork/${artworkId}`)
+      ).data as Bibliography[];
+  }
+
+  deleteBibliography(bibliography: Bibliography): void {
+    axios
+        .delete(
+            `https://mubytes-api.herokuapp.com/bibliography/delete/${bibliography.id}`
+        )
+        .then(() => {
+          this.snackbarDeleteBibliography = true;
+        });
+  }
+
+  addBiliography(): void{
+
+  }
+
+  editBibliography(): void{
+
+  }
+
 }

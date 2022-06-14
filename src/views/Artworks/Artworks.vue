@@ -498,7 +498,7 @@
                           </v-dialog>
                           <v-data-table
                             :headers="headersBibliographyTable"
-                            :items="bibliographies"
+                            :items="bibliographieItems"
                             class="mt-5"
                             :footer-props="{
                               'items-per-page-text': 'Nb éléments par page',
@@ -543,7 +543,7 @@
                         class="rounded-xl"
                         color="red"
                         text
-                        @click="dialogBibliography = false"
+                        @click="closeBlibliographyDialog()"
                       >
                         Fermer
                       </v-btn>
