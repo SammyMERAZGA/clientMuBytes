@@ -26,7 +26,7 @@
             </span>
             <div class="content">
               <h3 class="text-capitalize">{{ history.contract_type.libelle }}</h3>
-              <h3>Auteur : {{ history.establishment.name }}</h3>
+              <h3>Établissement : {{ history.establishment.name }}</h3>
               <!--<p>Ancien propriétaire : {{ history.owner }}</p>-->
             </div>
           </li>
