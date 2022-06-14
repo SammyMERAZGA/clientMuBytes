@@ -57,7 +57,7 @@ const routes: Array<RouteConfig> = [
     component: Login,
   },
   {
-    path: "/history",
+    path: "/history/:id",
     name: "HistoryArtwork",
     component: HistoryArtwork,
   },

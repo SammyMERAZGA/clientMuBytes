@@ -15,17 +15,19 @@
     <v-row
       align="center"
       justify="center"
-      v-for="history in historyArtwork"
+      v-for="history in allHistoryArtwork"
       :key="history.id"
     >
       <div class="timeline">
         <ul>
           <li>
-            <span>{{ history.date }}</span>
+            <span>
+              {{ history.begin_Date }}
+            </span>
             <div class="content">
-              <h3>{{ history.name }}</h3>
-              <h3>Auteur : {{ history.author }}</h3>
-              <p>Ancien propriétaire : {{ history.owner }}</p>
+              <h3 class="text-capitalize">{{ history.contract_type.libelle }}</h3>
+              <h3>Auteur : {{ history.establishment.name }}</h3>
+              <!--<p>Ancien propriétaire : {{ history.owner }}</p>-->
             </div>
           </li>
         </ul>

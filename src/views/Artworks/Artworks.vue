@@ -293,7 +293,7 @@
                       large
                       outlined
                       color="#fd2a65"
-                      to="/history"
+                      :to="`/history/${artwork.id}`"
                       v-bind="attrs"
                       v-on="on"
                     >
