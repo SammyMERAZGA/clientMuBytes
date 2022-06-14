@@ -83,6 +83,11 @@ export default class Artworks extends Vue {
 
   bibliographieItems: Bibliography[] = [];
   bibliographieArtworkId = 0; // L'id de l'artwork sélectionné
+  updateBibliographyDialog = false;
+  bibligraphieId = 0;
+
+  bibliographieLibelle = '';
+  bibliographieDescription = '';
 
   addArtwork(): void {
     this.overlay = true;
@@ -244,8 +249,26 @@ export default class Artworks extends Vue {
 
   }
 
-  editBibliography(): void{
-
+  editBibliography(item: Bibliography): void{
+    this.updateBibliographyDialog = true;
+    this.bibligraphieId = item.id;
+    this.bibliographieLibelle = item.libelle;
+    this.bibliographieDescription = item.description;
   }
+
+  closeUpdateBlibliographyDialog(): void{
+      this.updateBibliographyDialog = false;
+  }
+
+  updateBibliography(): void{
+      axios.post(`https://mubytes-api.herokuapp.com/bibliography/modify/${this.bibligraphieId}`, {
+          libelle:      this.bibliographieLibelle,
+          description:  this.bibliographieDescription,
+          artworkId:    this.idArtwork
+      }).then(() => {
+          this.fillBibliographieItems(this.idArtwork);
+          this.closeUpdateBlibliographyDialog()
+      });
+  };
 
 }
