@@ -461,7 +461,7 @@
                                 <v-container>
                                   <v-col cols="12">
                                     <v-text-field
-                                      v-model="libelle"
+                                      v-model="bibliographieLibelle"
                                       label="Libellé"
                                       clearable
                                       placeholder="Entrer le libellé de la bibliographie"
@@ -470,7 +470,7 @@
                                   </v-col>
                                   <v-col cols="12">
                                     <v-textarea
-                                      v-model="description"
+                                      v-model="bibliographieDescription"
                                       filled
                                       clearable
                                       label="Description"
@@ -486,11 +486,16 @@
                                   class="rounded-xl"
                                   color="#fd2a65"
                                   text
-                                  @click="addBibliographyDialog = false"
+                                  @click="closeAddBibliographyDialog()"
                                 >
                                   Annuler
                                 </v-btn>
-                                <v-btn class="rounded-xl" color="#353e8d" text>
+                                <v-btn
+                                  @click="addBiliography()"
+                                  class="rounded-xl"
+                                  color="#353e8d"
+                                  text
+                                >
                                   Ajouter
                                 </v-btn>
                               </v-card-actions>
@@ -498,7 +503,7 @@
                           </v-dialog>
                           <v-data-table
                             :headers="headersBibliographyTable"
-                            :items="bibliographies"
+                            :items="bibliographieItems"
                             class="mt-5"
                             :footer-props="{
                               'items-per-page-text': 'Nb éléments par page',
@@ -527,7 +532,7 @@
                                 <v-icon
                                   small
                                   color="red"
-                                  @click="deleteBibliography(item.id)"
+                                  @click="deleteBibliography(item)"
                                 >
                                   mdi-delete
                                 </v-icon>
@@ -543,7 +548,7 @@
                         class="rounded-xl"
                         color="red"
                         text
-                        @click="dialogBibliography = false"
+                        @click="closeBlibliographyDialog()"
                       >
                         Fermer
                       </v-btn>
@@ -819,6 +824,63 @@
         </v-btn>
       </template>
     </v-snackbar>
+
+    <v-dialog v-model="updateBibliographyDialog" persistent max-width="600px">
+      <v-card>
+        <v-toolbar id="toolbar" class="mb-5" dark>
+          <v-row align="center" justify="center">
+            <v-toolbar-title>
+              <span>
+                <v-icon>mdi-pencil</v-icon>
+                Modifier une bibliographie</span
+              >
+            </v-toolbar-title>
+          </v-row>
+        </v-toolbar>
+        <v-card-text>
+          <v-container>
+            <v-col cols="12">
+              <v-text-field
+                v-model="bibliographieLibelle"
+                label="Libellé"
+                clearable
+                placeholder="Entrer le libellé de la bibliographie"
+                color="#fd2a65"
+              ></v-text-field>
+            </v-col>
+            <v-col cols="12">
+              <v-textarea
+                v-model="bibliographieDescription"
+                filled
+                clearable
+                label="Description"
+                placeholder="Entrer la description de la bibliographie"
+                color="#fd2a65"
+              ></v-textarea>
+            </v-col>
+          </v-container>
+        </v-card-text>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn
+            class="rounded-xl"
+            color="#fd2a65"
+            text
+            @click="closeUpdateBlibliographyDialog()"
+          >
+            Annuler
+          </v-btn>
+          <v-btn
+            @click="updateBibliography()"
+            class="rounded-xl"
+            color="#353e8d"
+            text
+          >
+            Modifier
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
   </div>
 </template>
 

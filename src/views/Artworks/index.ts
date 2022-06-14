@@ -41,14 +41,6 @@ export default class Artworks extends Vue {
   artwork_Type_id = 0;
   statut_id = 0;
 
-  convertBelongTo(): number {
-    if (this.belong_To === false) {
-      return 1;
-    } else {
-      return 0;
-    }
-  }
-
   // Editing an Artwork
   dialogArtwork = true;
   // calendarArtworkAdded2 = false;
@@ -80,10 +72,18 @@ export default class Artworks extends Vue {
     { text: "Supprimer", value: "delete", sortable: false },
   ];
 
+  bibliographieItems: Bibliography[] = [];
+  bibliographieArtworkId = 0; // L'id de l'artwork sélectionné
+  updateBibliographyDialog = false;
+  bibligraphieId = 0;
+
+  bibliographieLibelle = "";
+  bibliographieDescription = "";
+
   addArtwork(): void {
     this.overlay = true;
     axios
-      .post(`https://mubytes-api.herokuapp.com/artwork/create`, {
+      .put(`https://mubytes-api.herokuapp.com/artwork/create`, {
         name: this.name,
         description: this.description,
         picture: this.picture,
@@ -91,7 +91,7 @@ export default class Artworks extends Vue {
         artwork_Date: this.artwork_Date,
         statut_id: this.statut_id,
         establishement_id: this.establishement_id,
-        belong_To: this.convertBelongTo(),
+        belong_To: this.belong_To,
         artwork_Type_id: this.artwork_Type_id,
       })
       .then(() => {
@@ -128,14 +128,6 @@ export default class Artworks extends Vue {
     ).data as Establishment[];
   }
 
-  // async allBibliographies(artwork: Artwork): Promise<void> {
-  //   this.bibliographies = (
-  //     await axios.get(
-  //       `https://mubytes-api.herokuapp.com/bibliography/${artwork.id}`
-  //     )
-  //   ).data as Bibliography[];
-  // }
-
   mounted(): void {
     this.allArtworks();
     this.allCategories();
@@ -155,10 +147,6 @@ export default class Artworks extends Vue {
     this.artwork_Type_id = artwork.artwork_Type_id;
     this.updateArtworkDialog = true;
     this.idArtwork = artwork.id;
-  }
-
-  openBibliography(artwork: Artwork): void {
-    this.dialogBibliography = true;
   }
 
   openHistoryArtwork(artwork: Artwork): void {
@@ -197,16 +185,6 @@ export default class Artworks extends Vue {
       });
   }
 
-  deleteBibliography(bibliography: Bibliography): void {
-    axios
-      .delete(
-        `https://mubytes-api.herokuapp.com/bibliography/delete/${bibliography.id}`
-      )
-      .then(() => {
-        this.snackbarDeleteBibliography = true;
-      });
-  }
-
   handleImage(e: any): void {
     const file = e.target.files[0];
     this.createBase64Image(file);
@@ -217,6 +195,93 @@ export default class Artworks extends Vue {
     reader.readAsDataURL(file);
     reader.onload = () => {
       this.picture = reader.result as string;
+    };
+  }
+
+  // ========== B I B L I O G R A P H I E ========== //
+  openBibliography(artwork: Artwork): void {
+    this.dialogBibliography = true;
+    this.bibliographieArtworkId = artwork.id;
+    this.fillBibliographieItems(artwork.id);
+    console.log(this.bibliographieItems);
+  }
+
+  closeBlibliographyDialog(): void {
+    this.dialogBibliography = false;
+    this.bibliographieItems = [];
+    this.bibliographieArtworkId = 0;
+  }
+
+  async fillBibliographieItems(artworkId: number): Promise<void> {
+    this.bibliographieItems = (
+      await axios.get(
+        `https://mubytes-api.herokuapp.com/bibliography/artwork/${artworkId}`
+      )
+    ).data as Bibliography[];
+  }
+
+  deleteBibliography(bibliography: Bibliography): void {
+    axios
+      .delete(
+        `https://mubytes-api.herokuapp.com/bibliography/delete/${bibliography.id}`
+      )
+      .then(() => {
+        this.snackbarDeleteBibliography = true;
+        this.fillBibliographieItems(this.bibliographieArtworkId);
+      });
+  }
+
+  addBiliography(): void {
+    axios
+      .put(
+        `https://mubytes-api.herokuapp.com/bibliography/create`,
+        this.getBibliographieData()
+      )
+      .then(() => {
+        this.emptyBibliographieData();
+        this.fillBibliographieItems(this.idArtwork);
+        this.closeAddBibliographyDialog();
+      });
+  }
+
+  editBibliography(item: Bibliography): void {
+    this.updateBibliographyDialog = true;
+    this.bibligraphieId = item.id;
+    this.bibliographieLibelle = item.libelle;
+    this.bibliographieDescription = item.description;
+  }
+
+  closeUpdateBlibliographyDialog(): void {
+    this.updateBibliographyDialog = false;
+  }
+
+  closeAddBibliographyDialog(): void {
+    this.addBibliographyDialog = false;
+  }
+
+  updateBibliography(): void {
+    axios
+      .post(
+        `https://mubytes-api.herokuapp.com/bibliography/modify/${this.bibligraphieId}`,
+        this.getBibliographieData()
+      )
+      .then(() => {
+        this.fillBibliographieItems(this.idArtwork);
+        this.closeUpdateBlibliographyDialog();
+        this.emptyBibliographieData();
+      });
+  }
+
+  emptyBibliographieData(): void {
+    this.bibliographieDescription = "";
+    this.bibliographieLibelle = "";
+  }
+
+  getBibliographieData(): object {
+    return {
+      libelle: this.bibliographieLibelle,
+      description: this.bibliographieDescription,
+      artwork_id: this.idArtwork,
     };
   }
 }

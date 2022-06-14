@@ -109,13 +109,6 @@
             'items-per-page-options': [10, 20, -1],
           }"
         >
-          <template v-slot:[`item.transporteur`]="{ item }">
-            <b>{{ item.transporteur.name }}</b> ({{ item.transporteur.code }})
-            <br v-if="!!item.transporteur.phone" />{{
-              item.transporteur.phone
-            }}
-            <br v-if="!!item.transporteur.email" />{{ item.transporteur.email }}
-          </template>
           <template v-slot:no-data>
             <h1>Aucun résultats</h1>
           </template>
