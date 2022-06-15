@@ -69,8 +69,8 @@
             </v-list-item>
             <v-row align="center" justify="center">
               <apexchart
-                width="400px"
-                type="bar"
+                width="430px"
+                type="pie"
                 :options="nbArtworkByStatusOptions"
                 :series="nbArtworkByStatus"
               ></apexchart>
@@ -89,11 +89,11 @@
                 <div><v-divider></v-divider></div>
                 <div class="pa-15 align">
                   <h3 class="indigo--text mb-5">
-                    Nombre d'oeuvres enregistrées : 23
+                    Nombre d'oeuvres enregistrées : {{ globalStats.nbArtworksRegistred }}
                   </h3>
-                  <h3 class="pink--text mb-5">Nombre d'établissement : 6</h3>
-                  <h3 class="indigo--text mb-5">Nombre de catégories : 7</h3>
-                  <h3 class="pink--text">Nombre d'utilisateurs : 16</h3>
+                  <h3 class="pink--text mb-5">Nombre d'établissement : {{ globalStats.nbEstablishments }}</h3>
+                  <h3 class="indigo--text mb-5">Nombre de catégories : {{ globalStats.nbCategories }}</h3>
+                  <h3 class="pink--text">Nombre d'utilisateurs : {{ globalStats.nbUsers }}</h3>
                 </div>
               </v-list-item-content>
             </v-list-item>

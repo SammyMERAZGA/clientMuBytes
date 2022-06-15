@@ -184,7 +184,7 @@
     <!-- SNACKBAR -->
     <!-- Error Password -->
     <v-snackbar color="red" v-model="snackbarErrorPassword"
-      >Adrese e-mail ou mot de passe incorrect !
+      >Adresse e-mail ou mot de passe incorrect !
       <template v-slot:action="{ attrs }">
         <v-btn
           color="white"
