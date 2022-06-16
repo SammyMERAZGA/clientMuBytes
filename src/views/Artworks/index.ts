@@ -22,6 +22,7 @@ export default class Artworks extends Vue {
   dialogBibliography = false;
   addBibliographyDialog = false;
   historyArtworkDialog = false;
+  deleteArtworkDialog = false;
   // calendarArtworkAdded = false;
   calendarArtworkCreated = false;
   // calendarArtworkLoaned = false;
@@ -166,6 +167,7 @@ export default class Artworks extends Vue {
           establishement_id: this.establishement_id,
           belong_To: this.belong_To,
           artwork_Type_id: this.artwork_Type_id,
+          statut_id: this.statut_id,
         }
       )
       .then(() => {
@@ -175,6 +177,11 @@ export default class Artworks extends Vue {
         this.allArtworks();
       });
   }
+
+  // openDialogDelete(artwork: Artwork): void {
+  //   this.deleteArtworkDialog = true;
+  //   this.idArtwork = artwork.id;
+  // }
 
   deleteArtwork(artwork: Artwork): void {
     axios

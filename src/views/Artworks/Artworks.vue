@@ -735,7 +735,7 @@
                   large
                   outlined
                   color="#fd2a65"
-                  @click="deleteArtwork(artwork)"
+                  @click="openDialogDelete(artwork)"
                 >
                   <v-icon color="#fd2a65"> mdi-delete </v-icon>
                 </v-btn>
@@ -877,6 +877,53 @@
             text
           >
             Modifier
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+    <v-dialog
+      class="mb-15"
+      v-model="deleteArtworkDialog"
+      persistent
+      max-width="600px"
+    >
+      <v-card class="rounded-xl">
+        <v-toolbar id="toolbar" class="mb-5" dark>
+          <v-row align="center" justify="center">
+            <v-toolbar-title>
+              <span>
+                <v-icon>mdi-delete-outline</v-icon>
+                Suppression de l'oeuvre</span
+              >
+            </v-toolbar-title>
+          </v-row>
+        </v-toolbar>
+        <v-card-text>
+          <v-container>
+            <v-row>
+              <h1 class="text-center pa-10">
+                Êtes-vous sûr de vouloir supprimer cette oeuvre ?
+              </h1>
+            </v-row>
+          </v-container>
+        </v-card-text>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn
+            class="rounded-xl"
+            color="red"
+            text
+            @click="deleteArtworkDialog = false"
+          >
+            Non
+          </v-btn>
+          <v-btn
+            class="rounded-xl"
+            color="indigo"
+            text
+            @click="deleteArtwork(artwork)"
+          >
+            Oui
           </v-btn>
         </v-card-actions>
       </v-card>

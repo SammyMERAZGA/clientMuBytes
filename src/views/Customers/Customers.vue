@@ -274,6 +274,56 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
+    <!-- Dialog delete customer -->
+    <v-dialog
+      class="mb-15"
+      v-model="deleteArtworkDialog"
+      v-if="idArtwork == artwork.id"
+      persistent
+      max-width="600px"
+    >
+      <v-card class="rounded-xl">
+        <v-toolbar id="toolbar" class="mb-5" dark>
+          <v-row align="center" justify="center">
+            <v-toolbar-title>
+              <span>
+                <v-icon>mdi-delete-outline</v-icon>
+                Suppression d'utilisateur</span
+              >
+            </v-toolbar-title>
+          </v-row>
+        </v-toolbar>
+        <v-card-text>
+          <v-container>
+            <v-row>
+              <h1>Êtes-vous sûr de vouloir supprimer cet utilisateur ?</h1>
+            </v-row>
+          </v-container>
+        </v-card-text>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn
+            class="rounded-xl"
+            color="red"
+            text
+            @click="
+              idArtwork = 0;
+              deleteArtworkDialog = false;
+            "
+          >
+            Non
+          </v-btn>
+          <v-btn
+            class="rounded-xl"
+            color="indigo"
+            text
+            @click="deleteArtwork(artwork)"
+          >
+            Oui
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
     <!-- SNACKBAR -->
     <!-- Add customer -->
     <v-snackbar color="green" v-model="snackbarAddCustomer"
