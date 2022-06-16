@@ -274,11 +274,10 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
-    <!-- Dialog delete customer -->
-    <v-dialog
+    "<!-- Dialog delete customer -->
+    <!-- <v-dialog
       class="mb-15"
       v-model="deleteArtworkDialog"
-      v-if="idArtwork == artwork.id"
       persistent
       max-width="600px"
     >
@@ -323,7 +322,7 @@
           </v-btn>
         </v-card-actions>
       </v-card>
-    </v-dialog>
+    </v-dialog> -->
     <!-- SNACKBAR -->
     <!-- Add customer -->
     <v-snackbar color="green" v-model="snackbarAddCustomer"
@@ -372,3 +371,4 @@
 
 <script lang="ts" src="./index.ts"></script>
 <style src="./style.css"></style>
+"

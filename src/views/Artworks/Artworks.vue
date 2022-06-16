@@ -900,10 +900,15 @@
         </v-toolbar>
         <v-card-text>
           <v-container>
-            <v-row>
-              <h1 class="text-center pa-10">
+            <v-row align="center" justify="center">
+              <h3 class="text-center mt-5 black--text">
                 Êtes-vous sûr de vouloir supprimer cette oeuvre ?
-              </h1>
+              </h3>
+              <img
+                src="../../assets/images/Storyset/delete.png"
+                alt="customers"
+                width="250"
+              />
             </v-row>
           </v-container>
         </v-card-text>

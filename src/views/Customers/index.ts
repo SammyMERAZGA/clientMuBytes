@@ -16,18 +16,18 @@ export default class Customers extends Vue {
   firstname = "";
   email = "";
   password = "";
-  role = "";
+  role = 0;
 
   customers: Customer[] = [];
 
   roles: Role[] = [
     {
       id: 1,
-      label: "Super-admin",
+      label: "Admin",
     },
     {
       id: 2,
-      label: "Admin",
+      label: "Super-admin",
     },
   ];
 
@@ -72,6 +72,7 @@ export default class Customers extends Vue {
     this.firstname = item.firstname;
     this.email = item.email;
     this.password = item.password;
+    this.role = item.role_id;
     this.updateCustomerDialog = true;
     this.customerId = item.id;
   }
@@ -113,5 +114,6 @@ export default class Customers extends Vue {
 
   mounted(): void {
     this.allCustomers();
+    console.log(this.customers);
   }
 }
