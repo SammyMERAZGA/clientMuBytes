@@ -81,6 +81,8 @@ export default class Artworks extends Vue {
   bibliographieLibelle = "";
   bibliographieDescription = "";
 
+  artworkToDelete = 0; // Id de l'artwork à supprimer
+
   addArtwork(): void {
     this.overlay = true;
     axios
@@ -183,12 +185,13 @@ export default class Artworks extends Vue {
   //   this.idArtwork = artwork.id;
   // }
 
-  deleteArtwork(artwork: Artwork): void {
+  deleteArtwork(): void {
     axios
-      .delete(`https://mubytes-api.herokuapp.com/artwork/delete/${artwork.id}`)
+      .delete(`https://mubytes-api.herokuapp.com/artwork/delete/${this.artworkToDelete}`)
       .then(() => {
         this.snackbarDeleteArtwork = true;
         this.allArtworks();
+        this.deleteArtworkDialog = false;
       });
   }
 
@@ -291,4 +294,9 @@ export default class Artworks extends Vue {
       artwork_id: this.idArtwork,
     };
   }
+
+  openDialogDelete(artwork: Artwork): void{
+      this.deleteArtworkDialog = true;
+      this.artworkToDelete = artwork.id;
+  };
 }

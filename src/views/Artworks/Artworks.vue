@@ -921,7 +921,7 @@
             class="rounded-xl"
             color="indigo"
             text
-            @click="deleteArtwork(artwork)"
+            @click="deleteArtwork()"
           >
             Oui
           </v-btn>
