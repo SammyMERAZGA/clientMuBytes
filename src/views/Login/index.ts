@@ -53,6 +53,7 @@ export default class Login extends Vue {
         } else {
           this.$store.commit("superAdmin", { val: false });
         }
+        console.log(this.$store.state.role_id);
         console.log("🚨" + this.$store.state.isSuperAdmin);
         console.log("Login success ✅" + this.$store.state.isLog);
         console.log("😁 Lastname : " + this.$store.state.lastname);

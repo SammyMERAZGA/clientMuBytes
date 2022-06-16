@@ -1,6 +1,7 @@
 import Vue from "vue";
 import Component from "vue-class-component";
 import axios from "axios";
+import store from "../../plugins/store";
 
 @Component
 export default class Navbar extends Vue {
@@ -44,10 +45,10 @@ export default class Navbar extends Vue {
   }
 
   mounted() {
-    if (localStorage.getItem("role_id") === "1") {
-      this.items = this.itemsSuperAdmin;
-    } else {
+    if (store.state.role_id === 1) {
       this.items = this.itemsAdmin;
+    } else {
+      this.items = this.itemsSuperAdmin;
     }
   }
 }

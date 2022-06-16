@@ -67,7 +67,7 @@ const routes: Array<RouteConfig> = [
     name: "Customers",
     component: Customers,
     beforeEnter(to, from, next) {
-      if (store.state.isLog === true && store.state.isSuperAdmin === true) {
+      if (store.state.isLog === true && store.state.role_id === 2) {
         next();
       } else {
         next("/:pathMatch(.*)*");
