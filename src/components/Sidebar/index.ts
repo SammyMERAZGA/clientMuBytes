@@ -15,7 +15,11 @@ export default class Sidebar extends Vue {
 
   itemsSuperAdmin = [
     { icon: "mdi-view-dashboard", text: "Dashboard", url: "/dashboard" },
-    { icon: "mdi-format-list-bulleted-square", text: "Catégories", url: "/categories" },
+    {
+      icon: "mdi-format-list-bulleted-square",
+      text: "Catégories",
+      url: "/categories",
+    },
     { icon: "mdi-panorama", text: "Oeuvres", url: "/artworks" },
     { icon: "mdi-home-city", text: "Établissements", url: "/establishments" },
     { icon: "mdi-list-status", text: "Statuts", url: "/status" },
@@ -24,7 +28,11 @@ export default class Sidebar extends Vue {
 
   itemsAdmin = [
     { icon: "mdi-view-dashboard", text: "Dashboard", url: "/dashboard" },
-    { icon: "mdi-format-list-bulleted-square", text: "Catégories", url: "/categories" },
+    {
+      icon: "mdi-format-list-bulleted-square",
+      text: "Catégories",
+      url: "/categories",
+    },
     { icon: "mdi-panorama", text: "Oeuvres", url: "/artworks" },
     { icon: "mdi-home-city", text: "Établissements", url: "/establishments" },
     { icon: "mdi-list-status", text: "Statuts", url: "/status" },
@@ -35,18 +43,18 @@ export default class Sidebar extends Vue {
   }
 
   mounted() {
-    if(localStorage.getItem("role_id") === "1") {
+    if (localStorage.getItem("role_id") === "1") {
       this.items = this.itemsSuperAdmin;
-    }
-    else {
+    } else {
       this.items = this.itemsAdmin;
     }
-  };
+  }
 
   logout(): void {
     this.$store.commit("nowLog", { val: false });
     this.$router.push("/");
     console.log("Logout success 🔴");
     this.snackbarLogout = true;
+    sessionStorage.clear();
   }
 }

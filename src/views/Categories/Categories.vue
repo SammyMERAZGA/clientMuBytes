@@ -106,7 +106,7 @@
           :footer-props="{
             'items-per-page-text': 'Nb éléments par page',
             'items-per-page-all-text': 'Tout',
-            'items-per-page-options': [5, 10, 20],
+            'items-per-page-options': [3, 5, 10],
           }"
         >
           <template v-slot:[`item.transporteur`]="{ item }">

@@ -749,7 +749,7 @@
       <v-pagination
         color="#fd2a65"
         v-model="page"
-        :length="4"
+        :length="1"
         circle
       ></v-pagination>
     </div>

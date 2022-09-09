@@ -13,7 +13,7 @@ export default class Navbar extends Vue {
     return this.$store.state.firstname;
   }
 
-  items: any = [];
+  items: any[] = [];
 
   itemsSuperAdmin = [
     { icon: "mdi-view-dashboard", text: "Dashboard", url: "/dashboard" },
@@ -45,7 +45,13 @@ export default class Navbar extends Vue {
   }
 
   mounted() {
-    if (store.state.role_id === 1) {
+    // if (store.state.role_id === 1) {
+    //   this.items = this.itemsAdmin;
+    // } else {
+    //   this.items = this.itemsSuperAdmin;
+    // }
+
+    if (localStorage.getItem("role_id") === "1") {
       this.items = this.itemsAdmin;
     } else {
       this.items = this.itemsSuperAdmin;

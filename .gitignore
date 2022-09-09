@@ -1,6 +1,8 @@
 .DS_Store
 node_modules
 /dist
+Icon
+mubytes-v0.1.0.tgz
 
 
 # local env files

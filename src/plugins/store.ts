@@ -1,11 +1,17 @@
 import vue from "vue";
 import Vuex from "vuex";
+import createdPersistedState from "vuex-persistedstate";
 
 vue.use(Vuex);
 
 /* eslint-disable */
 
 export default new Vuex.Store({
+  plugins: [
+    createdPersistedState({
+      storage: window.sessionStorage,
+    }),
+  ],
   state: {
     isLog: false,
     isSuperAdmin: false,
@@ -28,6 +34,6 @@ export default new Vuex.Store({
     },
     superAdmin: function (state, { val }) {
       state.isSuperAdmin = val;
-    }
+    },
   },
 });

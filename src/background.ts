@@ -1,6 +1,4 @@
-"use strict";
-
-import { app, protocol, BrowserWindow } from "electron";
+const { app, protocol, BrowserWindow } = require("electron");
 import { createProtocol } from "vue-cli-plugin-electron-builder/lib";
 import installExtension, { VUEJS_DEVTOOLS } from "electron-devtools-installer";
 const isDevelopment = process.env.NODE_ENV !== "production";
@@ -20,7 +18,8 @@ async function createWindow() {
       // See nklayman.github.io/vue-cli-plugin-electron-builder/guide/security.html#node-integration for more info
       nodeIntegration: process.env
         .ELECTRON_NODE_INTEGRATION as unknown as boolean,
-      contextIsolation: !process.env.ELECTRON_NODE_INTEGRATION,
+      contextIsolation: !(process.env
+          .ELECTRON_NODE_INTEGRATION as unknown) as boolean,
     },
   });
 

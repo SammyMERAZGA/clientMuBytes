@@ -12,4 +12,18 @@ module.exports = {
       },
     },
   },
+
+  pluginOptions: {
+    electronBuilder: {
+      builderOptions: {
+        productName: `Mubytes`,
+        files: [
+          `dist/**/*`,
+          `node_modules/**/*`,
+          `package.json`,
+          `main.js`,
+        ],
+      },
+    },
+  },
 };

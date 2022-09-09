@@ -13,7 +13,7 @@ export default class Dashboard extends Vue {
   globalStats: any[] = [];
 
   artworkByCategoryOptions = {
-    labels: ["Image", "Pixel", "Tableau", "Ordi"],
+    labels: ["Image", "Pixel", "Tableau", "Ordinateur"],
     colors: ["#353E8D", "#fd2a65", "#b841f3", "#fcd5dc"],
   };
 
